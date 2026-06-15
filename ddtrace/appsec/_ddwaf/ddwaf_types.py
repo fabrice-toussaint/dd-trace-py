@@ -97,14 +97,14 @@ def _build_sequence(
     if max_depth <= 0:
         observator.set_container_depth(DDWAF_MAX_CONTAINER_DEPTH)
         max_objects = 0
-    array = ddwaf_object_array(self)
+    ddwaf_object_array(self)
     for counter_object, elt in enumerate(struct):
         if counter_object >= max_objects:
             observator.set_container_size(len(struct))
             break
         obj = ddwaf_object.__new__(ddwaf_object)
         _build_ddwaf_object(obj, elt, observator, max_objects, max_depth - 1, max_string_length)
-        ddwaf_object_array_add(array, obj)
+        ddwaf_object_array_add(self, obj)
 
 
 def _build_mapping(
@@ -118,7 +118,7 @@ def _build_mapping(
     if max_depth <= 0:
         observator.set_container_depth(DDWAF_MAX_CONTAINER_DEPTH)
         max_objects = 0
-    map_o = ddwaf_object_map(self)
+    ddwaf_object_map(self)
     # order is unspecified and could lead to problems if max_objects is reached
     counter_object = 0
     for key, val in struct.items():
@@ -137,7 +137,7 @@ def _build_mapping(
             res_key = res_key[:max_string_length]
         obj = ddwaf_object.__new__(ddwaf_object)
         _build_ddwaf_object(obj, val, observator, max_objects, max_depth - 1, max_string_length)
-        ddwaf_object_map_add(map_o, res_key, obj)
+        ddwaf_object_map_add(self, res_key, obj)
         counter_object += 1
 
 
@@ -486,103 +486,63 @@ ddwaf_builder_destroy = ctypes.CFUNCTYPE(None, ddwaf_builder)(
 # ddwaf_object
 
 # Not used in Python code but kept for completeness with the libddwaf API
-ddwaf_object_invalid = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p)(
+ddwaf_object_invalid = ctypes.PYFUNCTYPE(ddwaf_object_p, ddwaf_object_p)(
     ("ddwaf_object_invalid", ddwaf),
     ((3, "object"),),
 )
 
 
-ddwaf_object_string = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_char_p)(
+ddwaf_object_string = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_char_p)(
     ("ddwaf_object_string", ddwaf),
-    (
-        (3, "object"),
-        (1, "string"),
-    ),
 )
 
 # Not used in Python code but kept for completeness with the libddwaf API
-ddwaf_object_string_from_unsigned = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_uint64)(
+ddwaf_object_string_from_unsigned = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_uint64)(
     ("ddwaf_object_string_from_unsigned", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
-ddwaf_object_string_from_signed = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_int64)(
+ddwaf_object_string_from_signed = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_int64)(
     ("ddwaf_object_string_from_signed", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
 # Not used in Python code but kept for completeness with the libddwaf API
-ddwaf_object_unsigned = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_uint64)(
+ddwaf_object_unsigned = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_uint64)(
     ("ddwaf_object_unsigned", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
-ddwaf_object_signed = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_int64)(
+ddwaf_object_signed = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_int64)(
     ("ddwaf_object_signed", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
 # object_(un)signed_forced : not used ?
 
-ddwaf_object_bool = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_bool)(
+ddwaf_object_bool = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_bool)(
     ("ddwaf_object_bool", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
 
-ddwaf_object_float = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p, ctypes.c_double)(
+ddwaf_object_float = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_double)(
     ("ddwaf_object_float", ddwaf),
-    (
-        (3, "object"),
-        (1, "value"),
-    ),
 )
 
-ddwaf_object_null = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p)(
+ddwaf_object_null = ctypes.PYFUNCTYPE(None, ddwaf_object_p)(
     ("ddwaf_object_null", ddwaf),
-    ((3, "object"),),
 )
 
-ddwaf_object_array = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p)(
+ddwaf_object_array = ctypes.PYFUNCTYPE(None, ddwaf_object_p)(
     ("ddwaf_object_array", ddwaf),
-    ((3, "object"),),
 )
 
-ddwaf_object_map = ctypes.CFUNCTYPE(ddwaf_object_p, ddwaf_object_p)(
+ddwaf_object_map = ctypes.PYFUNCTYPE(None, ddwaf_object_p)(
     ("ddwaf_object_map", ddwaf),
-    ((3, "object"),),
 )
 
-ddwaf_object_array_add = ctypes.CFUNCTYPE(ctypes.c_bool, ddwaf_object_p, ddwaf_object_p)(
+ddwaf_object_array_add = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ddwaf_object_p)(
     ("ddwaf_object_array_add", ddwaf),
-    (
-        (1, "array"),
-        (1, "object"),
-    ),
 )
 
-ddwaf_object_map_add = ctypes.CFUNCTYPE(ctypes.c_bool, ddwaf_object_p, ctypes.c_char_p, ddwaf_object_p)(
+ddwaf_object_map_add = ctypes.PYFUNCTYPE(None, ddwaf_object_p, ctypes.c_char_p, ddwaf_object_p)(
     ("ddwaf_object_map_add", ddwaf),
-    (
-        (1, "map"),
-        (1, "key"),
-        (1, "object"),
-    ),
 )
 
 # unused because accessible from python part
