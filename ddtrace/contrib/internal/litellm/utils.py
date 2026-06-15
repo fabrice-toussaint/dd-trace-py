@@ -1,8 +1,8 @@
 from collections import defaultdict
 from dataclasses import FrozenInstanceError
 
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.llmobs._constants import LITELLM_ROUTER_INSTANCE_KEY
 from ddtrace.llmobs._integrations.base_stream_handler import AsyncStreamHandler
 from ddtrace.llmobs._integrations.base_stream_handler import StreamHandler

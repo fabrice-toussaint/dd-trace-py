@@ -2,10 +2,10 @@ import logging
 import sys
 import warnings
 
-from ddtrace.internal.utils.module import ModuleWatchdog
-from ddtrace.internal.utils.module import is_module_installed
 from ddtrace.internal.settings import env
 from ddtrace.internal.utils.formats import asbool  # noqa:F401
+from ddtrace.internal.utils.module import ModuleWatchdog
+from ddtrace.internal.utils.module import is_module_installed
 
 
 MODULES_REQUIRING_CLEANUP = ("gevent",)

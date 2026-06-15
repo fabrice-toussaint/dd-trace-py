@@ -13,15 +13,15 @@ from typing import cast
 
 from wrapt import FunctionWrapper
 
-from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
-from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.utils.module import origin
 from ddtrace.internal.safety import _isinstance
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.internal.utils.inspection import collect_code_objects
 from ddtrace.internal.utils.inspection import functions_for_code
 from ddtrace.internal.utils.inspection import linenos
 from ddtrace.internal.utils.inspection import resolved_code_origin
 from ddtrace.internal.utils.inspection import undecorated
+from ddtrace.internal.utils.logger import get_logger
+from ddtrace.internal.utils.module import origin
 from ddtrace.internal.utils.wrapping import get_function_code
 
 

@@ -13,8 +13,8 @@ from ddtrace.debugging._probe.model import MetricProbeKind
 from ddtrace.debugging._probe.model import MetricProbeMixin
 from ddtrace.debugging._signal.log import LogSignal
 from ddtrace.debugging._signal.model import probe_to_signal
-from ddtrace.internal.utils.compat import ExcInfoType
 from ddtrace.internal.metrics import Metrics
+from ddtrace.internal.utils.compat import ExcInfoType
 
 
 @dataclass

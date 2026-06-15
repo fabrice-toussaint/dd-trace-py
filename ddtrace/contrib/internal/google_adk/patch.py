@@ -8,8 +8,8 @@ from ddtrace import config
 from ddtrace.contrib.internal.trace_utils import check_module_path
 from ddtrace.contrib.trace_utils import unwrap
 from ddtrace.contrib.trace_utils import wrap
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.llmobs._integrations import GoogleAdkIntegration
 from ddtrace.llmobs._integrations.google_utils import extract_provider_and_model_name
 

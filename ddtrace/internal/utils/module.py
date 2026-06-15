@@ -12,8 +12,8 @@ from types import ModuleType
 import typing as t
 from weakref import WeakValueDictionary as wvdict
 
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.wrapping.context import WrappingContext
 
 

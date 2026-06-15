@@ -8,8 +8,6 @@ from ddtrace.appsec._capabilities import _asm_feature_is_required
 from ddtrace.appsec._capabilities import _rc_capabilities
 from ddtrace.appsec._constants import APPSEC
 from ddtrace.appsec._constants import PRODUCTS
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.remoteconfig import Payload
 from ddtrace.internal.remoteconfig import PayloadType
 from ddtrace.internal.remoteconfig import RCCallback
@@ -17,6 +15,8 @@ from ddtrace.internal.remoteconfig.worker import remoteconfig_poller
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_APM_PRODUCT
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

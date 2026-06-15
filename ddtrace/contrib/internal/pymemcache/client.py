@@ -21,13 +21,13 @@ from ddtrace.ext import SpanTypes
 from ddtrace.ext import db
 from ddtrace.ext import memcached as memcachedx
 from ddtrace.ext import net
+from ddtrace.internal.settings import env
+from ddtrace.internal.settings._config import config
 from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.schema import schematize_cache_operation
 from ddtrace.internal.utils.schema import schematize_service_name
-from ddtrace.internal.settings import env
-from ddtrace.internal.settings._config import config
-from ddtrace.internal.utils.formats import asbool
 from ddtrace.trace import tracer
 
 

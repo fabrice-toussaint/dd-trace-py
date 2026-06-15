@@ -2,11 +2,11 @@ import abc
 import json
 import typing as t
 
-from ddtrace.internal.utils.constants import CONTAINER_TAGS_HASH
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.periodic import ForksafeAwakeablePeriodicService
 from ddtrace.internal.process_tags import compute_base_hash
 from ddtrace.internal.settings._agent import config
+from ddtrace.internal.utils.constants import CONTAINER_TAGS_HASH
+from ddtrace.internal.utils.logger import get_logger
 
 from .utils.http import get_connection
 

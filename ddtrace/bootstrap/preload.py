@@ -6,12 +6,12 @@ Add all monkey-patching that needs to run by default here
 import typing as t
 
 from ddtrace import config  # noqa:F401
-from ddtrace.internal.utils.logger import get_logger  # noqa:F401
-from ddtrace.internal.utils.module import ModuleWatchdog  # noqa:F401
 from ddtrace.internal.products import manager  # noqa:F401
 from ddtrace.internal.runtime.runtime_metrics import RuntimeWorker  # noqa:F401
 from ddtrace.internal.settings.crashtracker import config as crashtracker_config
 from ddtrace.internal.settings.profiling import config as profiling_config  # noqa:F401
+from ddtrace.internal.utils.logger import get_logger  # noqa:F401
+from ddtrace.internal.utils.module import ModuleWatchdog  # noqa:F401
 from ddtrace.trace import tracer
 
 

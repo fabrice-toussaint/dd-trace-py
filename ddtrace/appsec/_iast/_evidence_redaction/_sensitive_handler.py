@@ -1,9 +1,9 @@
 import re
 import string
 
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings._config import config
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils.logger import get_logger
 
 from .._taint_tracking import OriginType
 from .._utils import _get_source_index

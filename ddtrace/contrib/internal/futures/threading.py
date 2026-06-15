@@ -1,8 +1,8 @@
 from typing import Optional
 
 import ddtrace
-from ddtrace.internal.utils import core
 from ddtrace.internal.datadog.profiling import context_meta
+from ddtrace.internal.utils import core
 from ddtrace.trace import Context
 
 

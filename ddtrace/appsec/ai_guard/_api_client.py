@@ -12,15 +12,15 @@ from ddtrace import config
 from ddtrace.appsec._constants import AI_GUARD
 from ddtrace.appsec._trace_utils import _aiguard_manual_keep
 from ddtrace.ext import http
-from ddtrace.internal.utils import core
 from ddtrace.internal import telemetry
-from ddtrace.internal.utils._exceptions import DDBlockException
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import ai_guard_config
 from ddtrace.internal.telemetry import TELEMETRY_NAMESPACE
 from ddtrace.internal.telemetry.metrics_namespaces import MetricTagType
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils._exceptions import DDBlockException
 from ddtrace.internal.utils.http import Response
 from ddtrace.internal.utils.http import get_connection
+import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.trace import tracer
 from ddtrace.version import __version__
 

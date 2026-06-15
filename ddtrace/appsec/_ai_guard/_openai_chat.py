@@ -17,8 +17,8 @@ from ddtrace.appsec.ai_guard._api_client import Function
 from ddtrace.appsec.ai_guard._api_client import Message
 from ddtrace.appsec.ai_guard._api_client import Options
 from ddtrace.appsec.ai_guard._api_client import ToolCall
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import ai_guard_config
+import ddtrace.internal.utils.logger as ddlogger
 
 
 logger = ddlogger.get_logger(__name__)

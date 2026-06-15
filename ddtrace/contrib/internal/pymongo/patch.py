@@ -1,9 +1,9 @@
 import pymongo
 
 from ddtrace import config
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings._config import _get_config
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.propagation._database_monitoring import _DBM_Propagator
 from ddtrace.vendor.sqlcommenter import _generate_comment_from_metadata as _generate_comment_from_metadata
 

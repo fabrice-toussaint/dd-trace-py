@@ -11,11 +11,11 @@ from ddtrace._trace.span import Span  # noqa:F401
 from ddtrace._trace.span import _get_64_highest_order_bits_as_hex
 from ddtrace._trace.span import _get_64_lowest_order_bits_as_int
 from ddtrace.appsec._constants import APPSEC
-from ddtrace.internal.utils import core
 from ddtrace.internal.settings._config import config
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_NAMESPACE
+from ddtrace.internal.utils import core
 
 from ..constants import AUTO_KEEP
 from ..constants import AUTO_REJECT
@@ -26,6 +26,7 @@ from ..internal._tagset import TagsetMaxSizeDecodeError
 from ..internal._tagset import TagsetMaxSizeEncodeError
 from ..internal._tagset import decode_tagset_string
 from ..internal._tagset import encode_tagset_values
+from ..internal.sampling import validate_sampling_decision
 from ..internal.utils.compat import ensure_text
 from ..internal.utils.constants import _PROPAGATION_BEHAVIOR_RESTART
 from ..internal.utils.constants import _PROPAGATION_STYLE_BAGGAGE
@@ -44,9 +45,8 @@ from ..internal.utils.constants import PROPAGATION_STYLE_B3_SINGLE
 from ..internal.utils.constants import PROPAGATION_STYLE_DATADOG
 from ..internal.utils.constants import W3C_TRACEPARENT_KEY
 from ..internal.utils.constants import W3C_TRACESTATE_KEY
-from ..internal.utils.logger import get_logger
-from ..internal.sampling import validate_sampling_decision
 from ..internal.utils.http import w3c_tracestate_add_p
+from ..internal.utils.logger import get_logger
 from ._utils import get_wsgi_header
 
 

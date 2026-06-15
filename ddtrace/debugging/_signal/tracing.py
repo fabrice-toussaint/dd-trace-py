@@ -18,10 +18,10 @@ from ddtrace.debugging._signal.model import EvaluationError
 from ddtrace.debugging._signal.model import Signal
 from ddtrace.debugging._signal.model import probe_to_signal
 from ddtrace.debugging._signal.utils import serialize
-from ddtrace.internal.utils.compat import ExcInfoType
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.metrics import Metrics
 from ddtrace.internal.safety import _isinstance
+from ddtrace.internal.utils.compat import ExcInfoType
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.trace import Span
 
 

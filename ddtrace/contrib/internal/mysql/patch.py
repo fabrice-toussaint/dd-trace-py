@@ -7,11 +7,11 @@ from ddtrace.contrib.dbapi_async import TracedAsyncConnection
 from ddtrace.contrib.internal.trace_utils import _convert_to_string
 from ddtrace.ext import db
 from ddtrace.ext import net
-from ddtrace.internal.utils.schema import schematize_database_operation
-from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.schema import schematize_database_operation
+from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.wrappers import unwrap as _u
 from ddtrace.propagation._database_monitoring import _DBM_Propagator
 

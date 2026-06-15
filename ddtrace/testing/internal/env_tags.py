@@ -7,13 +7,13 @@ from ddtrace.internal.settings import env
 from ddtrace.testing.internal import ci
 from ddtrace.testing.internal import git
 from ddtrace.testing.internal.ci import CITag
-from ddtrace.testing.internal.utils.constants import DD_TEST_OPTIMIZATION_ENV_DATA_FILE
 from ddtrace.testing.internal.git import GitTag
 from ddtrace.testing.internal.git import get_workspace_path
 from ddtrace.testing.internal.offline_mode import get_offline_mode
 from ddtrace.testing.internal.offline_mode import resolve_rlocation
 from ddtrace.testing.internal.telemetry import TelemetryAPI
 from ddtrace.testing.internal.utils import _filter_sensitive_info
+from ddtrace.testing.internal.utils.constants import DD_TEST_OPTIMIZATION_ENV_DATA_FILE
 
 
 log = logging.getLogger(__name__)

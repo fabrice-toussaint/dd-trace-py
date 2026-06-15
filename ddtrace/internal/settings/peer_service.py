@@ -1,8 +1,8 @@
 from ddtrace.ext import SpanKind
-from ddtrace.internal.utils.schema import SCHEMA_VERSION
 from ddtrace.internal.telemetry import get_config as _get_config
 from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.formats import parse_tags_str
+from ddtrace.internal.utils.schema import SCHEMA_VERSION
 
 
 class PeerServiceConfig(object):

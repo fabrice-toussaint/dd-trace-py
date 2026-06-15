@@ -3,10 +3,10 @@ from typing import Callable
 from typing import Sequence
 
 from ddtrace import config
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.periodic import PeriodicService
 from ddtrace.internal.remoteconfig import Payload
 from ddtrace.internal.remoteconfig._connectors import PublisherSubscriberConnector
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

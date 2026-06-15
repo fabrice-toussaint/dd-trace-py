@@ -14,10 +14,10 @@ from ddtrace.appsec._utils import _hash_user_id
 from ddtrace.constants import USER_KEEP
 from ddtrace.contrib.internal.trace_utils_base import set_user
 from ddtrace.ext import user
+from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils._exceptions import BlockingException
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings.asm import config as asm_config
 
 
 log = get_logger(__name__)
@@ -42,8 +42,8 @@ def _maybe_hash(value: Optional[str], mode: str) -> Optional[str]:
 
 
 def _asm_manual_keep(span: Span) -> None:
-    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
     from ddtrace.internal.sampling import SamplingMechanism
+    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 
     span._override_sampling_decision(USER_KEEP)
     # set decision maker to ASM = -5
@@ -55,8 +55,8 @@ def _asm_manual_keep(span: Span) -> None:
 
 
 def _aiguard_manual_keep(span: Span) -> None:
-    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
     from ddtrace.internal.sampling import SamplingMechanism
+    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 
     span._override_sampling_decision(USER_KEEP)
     # set decision maker to AI_GUARD = -13

@@ -12,9 +12,9 @@ from ddtrace.internal.utils.compat import NumericType
 from ddtrace.internal.utils.constants import MAX_UINT_64BITS as _MAX_UINT_64BITS
 from ddtrace.internal.utils.constants import W3C_TRACEPARENT_KEY
 from ddtrace.internal.utils.constants import W3C_TRACESTATE_KEY
+from ddtrace.internal.utils.http import w3c_get_dd_list_member as _w3c_get_dd_list_member
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.threads import RLock
-from ddtrace.internal.utils.http import w3c_get_dd_list_member as _w3c_get_dd_list_member
 
 
 _ContextState = tuple[

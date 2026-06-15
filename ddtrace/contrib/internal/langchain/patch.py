@@ -8,12 +8,12 @@ from ddtrace import config
 from ddtrace.contrib.internal.langchain.utils import shared_stream
 from ddtrace.contrib.internal.trace_utils import unwrap
 from ddtrace.contrib.internal.trace_utils import wrap
+from ddtrace.internal.utils import ArgumentError
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils._exceptions import DDBlockException
 from ddtrace.internal.utils.compat import is_wrapted
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.utils import ArgumentError
-from ddtrace.internal.utils import get_argument_value
 from ddtrace.llmobs._integrations import LangChainIntegration
 from ddtrace.llmobs._integrations._bedrock_inference_profiles import record_inference_profile
 from ddtrace.llmobs._utils import safe_json

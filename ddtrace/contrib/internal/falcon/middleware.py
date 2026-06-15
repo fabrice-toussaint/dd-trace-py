@@ -3,10 +3,10 @@ import sys
 from ddtrace import config
 from ddtrace.ext import SpanTypes
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.schema import SpanDirection
 from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.schema import schematize_url_operation
-from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.trace import tracer
 from ddtrace.vendor.debtcollector import deprecate
 

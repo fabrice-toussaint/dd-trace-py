@@ -30,10 +30,7 @@ from ddtrace.constants import ERROR_TYPE
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import git
 from ddtrace.internal import atexit
-from ddtrace.internal.utils import core
 from ddtrace.internal import forksafe
-from ddtrace.internal.utils.compat import ensure_text
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.native import generate_128bit_trace_id
 from ddtrace.internal.native import rand64bits
 from ddtrace.internal.remoteconfig.worker import remoteconfig_poller
@@ -45,10 +42,13 @@ from ddtrace.internal.settings.integration import _integration_env_var_id
 from ddtrace.internal.telemetry import get_config as _get_config
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_APM_PRODUCT
-from ddtrace.internal.utils.threads import RLock
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils.compat import ensure_text
 from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.formats import format_trace_id
 from ddtrace.internal.utils.formats import parse_tags_str
+from ddtrace.internal.utils.logger import get_logger
+from ddtrace.internal.utils.threads import RLock
 from ddtrace.llmobs import _telemetry as telemetry
 from ddtrace.llmobs._constants import ANNOTATIONS_CONTEXT_ID
 from ddtrace.llmobs._constants import CACHED_LLMOBS_EVENT_CTX_KEY

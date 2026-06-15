@@ -19,7 +19,6 @@ from ddtrace.internal import gitmetadata
 from ddtrace.internal import process_tags
 from ddtrace.internal import runtime
 from ddtrace.internal.hostname import get_hostname
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.packages import is_distribution_available
 from ddtrace.internal.remoteconfig import ConfigMetadata
 from ddtrace.internal.remoteconfig import Payload
@@ -35,6 +34,7 @@ from ddtrace.internal.settings._core import DDConfig
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_LOG_LEVEL
 from ddtrace.internal.utils.formats import parse_tags_str
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 from ddtrace.internal.utils.time import StopWatch
 from ddtrace.internal.utils.version import _pep440_to_semver

@@ -8,8 +8,8 @@ from typing import Optional
 
 from ddtrace._logger import _add_file_handler
 from ddtrace.internal.flare.json_formatter import StructuredJSONFormatter
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.native._native import native_flare
+from ddtrace.internal.utils.logger import get_logger
 
 
 TRACER_FLARE_DIRECTORY = "tracer_flare"

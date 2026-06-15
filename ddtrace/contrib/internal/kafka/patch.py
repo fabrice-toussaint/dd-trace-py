@@ -13,19 +13,19 @@ from ddtrace.contrib.internal.trace_utils import set_service_and_source
 from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import kafka as kafkax
+from ddtrace.internal.settings import env
+from ddtrace.internal.utils import ArgumentError
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils import set_argument_value
 from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils.constants import MESSAGING_DESTINATION_NAME
 from ddtrace.internal.utils.constants import MESSAGING_SYSTEM
+from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.schema import schematize_messaging_operation
 from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.schema.span_attribute_schema import SpanDirection
-from ddtrace.internal.settings import env
-from ddtrace.internal.utils import ArgumentError
-from ddtrace.internal.utils import get_argument_value
-from ddtrace.internal.utils import set_argument_value
-from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.version import parse_version
 from ddtrace.propagation.http import HTTPPropagator as Propagator
 from ddtrace.trace import tracer

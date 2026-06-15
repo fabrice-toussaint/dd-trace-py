@@ -24,14 +24,14 @@ from ddtrace.contrib import trace_utils
 from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils import get_blocked
+from ddtrace.internal.utils import set_blocked
 from ddtrace.internal.utils._exceptions import BlockingException
 from ddtrace.internal.utils._exceptions import find_exception
 from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.schema import schematize_url_operation
-from ddtrace.internal.utils import get_blocked
-from ddtrace.internal.utils import set_blocked
-from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.propagation._utils import from_wsgi_header
 from ddtrace.propagation.http import HTTPPropagator
 from ddtrace.vendor.debtcollector import deprecate

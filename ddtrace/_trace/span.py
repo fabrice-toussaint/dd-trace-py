@@ -31,6 +31,8 @@ from ddtrace.constants import USER_KEEP
 from ddtrace.constants import USER_REJECT
 from ddtrace.constants import VERSION_KEY
 from ddtrace.ext import net
+from ddtrace.internal.native._native import SpanData
+from ddtrace.internal.settings._config import config
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils.compat import NumericType
 from ddtrace.internal.utils.constants import MAX_INT_64BITS as _MAX_INT_64BITS
@@ -40,8 +42,6 @@ from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 from ddtrace.internal.utils.constants import SPAN_API_DATADOG
 from ddtrace.internal.utils.constants import SamplingMechanism
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.native._native import SpanData
-from ddtrace.internal.settings._config import config
 from ddtrace.internal.utils.time import Time
 
 

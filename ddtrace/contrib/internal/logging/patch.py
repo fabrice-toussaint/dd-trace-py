@@ -5,6 +5,7 @@ from wrapt import wrap_function_wrapper as _w
 import ddtrace
 from ddtrace import config
 from ddtrace.contrib.internal.trace_utils import unwrap as _u
+from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.constants import LOG_ATTR_ENV
 from ddtrace.internal.utils.constants import LOG_ATTR_SERVICE
 from ddtrace.internal.utils.constants import LOG_ATTR_SPAN_ID
@@ -12,7 +13,6 @@ from ddtrace.internal.utils.constants import LOG_ATTR_TRACE_ID
 from ddtrace.internal.utils.constants import LOG_ATTR_VALUE_EMPTY
 from ddtrace.internal.utils.constants import LOG_ATTR_VALUE_ZERO
 from ddtrace.internal.utils.constants import LOG_ATTR_VERSION
-from ddtrace.internal.utils import get_argument_value
 
 
 config._add(

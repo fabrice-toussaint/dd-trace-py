@@ -18,10 +18,10 @@ from ddtrace.ext import db
 from ddtrace.ext import memcached
 from ddtrace.ext import net
 from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.schema import schematize_cache_operation
 from ddtrace.internal.utils.schema import schematize_service_name
-from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.trace import tracer
 from ddtrace.vendor.debtcollector import deprecate
 

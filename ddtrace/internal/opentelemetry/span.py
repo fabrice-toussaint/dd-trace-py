@@ -17,10 +17,10 @@ from ddtrace.constants import ERROR_STACK
 from ddtrace.constants import ERROR_TYPE
 from ddtrace.constants import SPAN_KIND
 from ddtrace.internal.utils.compat import ensure_text
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.formats import flatten_key_value
 from ddtrace.internal.utils.formats import is_sequence
 from ddtrace.internal.utils.http import w3c_tracestate_add_p
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.trace import tracer as ddtracer
 
 

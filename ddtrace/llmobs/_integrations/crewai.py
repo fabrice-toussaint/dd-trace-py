@@ -5,9 +5,9 @@ from typing import Optional
 from weakref import WeakKeyDictionary
 
 from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.formats import format_trace_id
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.llmobs._constants import DISPATCH_ON_TOOL_CALL
 from ddtrace.llmobs._constants import ROOT_PARENT_ID
 from ddtrace.llmobs._integrations.base import BaseLLMIntegration

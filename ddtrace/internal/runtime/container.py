@@ -7,12 +7,12 @@ from typing import Literal  # noqa:F401
 from typing import Optional
 from typing import Union
 
+from ddtrace.internal.settings import env
 from ddtrace.internal.utils.constants import CONTAINER_ID_HEADER_NAME
 from ddtrace.internal.utils.constants import ENTITY_ID_HEADER_NAME
 from ddtrace.internal.utils.constants import EXTERNAL_ENV_ENVIRONMENT_VARIABLE
 from ddtrace.internal.utils.constants import EXTERNAL_ENV_HEADER_NAME
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings import env
 
 
 log = get_logger(__name__)

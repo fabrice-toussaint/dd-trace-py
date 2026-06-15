@@ -6,9 +6,9 @@ from typing import Optional
 
 from ddtrace.contrib.internal.coverage.data import _original_sys_argv_command
 from ddtrace.contrib.internal.coverage.patch import is_coverage_running
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings._config import _get_config
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

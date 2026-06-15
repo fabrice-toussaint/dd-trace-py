@@ -18,10 +18,10 @@ from ddtrace.appsec._metrics import report_api_security
 from ddtrace.appsec._trace_utils import _asm_manual_keep
 import ddtrace.constants as constants
 from ddtrace.ext import http
-from ddtrace.internal.utils import logger as ddlogger
-from ddtrace.internal.utils.compat import NumericType
 from ddtrace.internal.service import Service
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils import logger as ddlogger
+from ddtrace.internal.utils.compat import NumericType
 
 
 log = ddlogger.get_logger(__name__)

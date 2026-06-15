@@ -10,16 +10,16 @@ from envier import validators
 from ddtrace.ext.git import COMMIT_SHA
 from ddtrace.ext.git import MAIN_PACKAGE
 from ddtrace.ext.git import REPOSITORY_URL
-from ddtrace.internal.utils import compat
 from ddtrace.internal import gitmetadata
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings._core import DDConfig
 from ddtrace.internal.settings._core import ValueSource
 from ddtrace.internal.telemetry import report_configuration
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_LOG_LEVEL
+from ddtrace.internal.utils import compat
 from ddtrace.internal.utils.formats import parse_tags_str
+from ddtrace.internal.utils.logger import get_logger
 
 
 logger = get_logger(__name__)

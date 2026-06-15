@@ -11,10 +11,10 @@ import pytest
 
 from ddtrace.contrib.internal.pytest._types import pytest_Config
 from ddtrace.ext.test_visibility import ITR_SKIPPING_LEVEL
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings import env
 from ddtrace.internal.test_visibility.api import InternalTestSession
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

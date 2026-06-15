@@ -5,11 +5,11 @@ from typing import Union
 from typing import cast
 from weakref import WeakKeyDictionary
 
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import ArgumentError
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.formats import format_trace_id
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.llmobs import LLMObs
 from ddtrace.llmobs._constants import DISPATCH_ON_LLM_TOOL_CHOICE
 from ddtrace.llmobs._constants import DISPATCH_ON_TOOL_CALL

@@ -21,8 +21,8 @@ from ddtrace.appsec._metrics import report_error
 from ddtrace.appsec._utils import DDWaf_info
 from ddtrace.appsec._utils import DDWaf_result
 from ddtrace.appsec._utils import _observator
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.remoteconfig import PayloadType
+from ddtrace.internal.utils.logger import get_logger
 
 
 LOGGER = get_logger(__name__)

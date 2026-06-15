@@ -58,6 +58,8 @@ from ddtrace.ext.kafka import PARTITION
 from ddtrace.ext.kafka import RECEIVED_MESSAGE
 from ddtrace.ext.kafka import TOMBSTONE
 from ddtrace.ext.kafka import TOPIC
+from ddtrace.internal.hostname import get_hostname
+from ddtrace.internal.sampling import _inherit_sampling_tags
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils.compat import is_valid_ip
 from ddtrace.internal.utils.compat import maybe_stringify
@@ -73,9 +75,7 @@ from ddtrace.internal.utils.constants import MESSAGING_MESSAGE_ID
 from ddtrace.internal.utils.constants import MESSAGING_OPERATION
 from ddtrace.internal.utils.constants import MESSAGING_SYSTEM
 from ddtrace.internal.utils.constants import SPAN_LINK_KIND
-from ddtrace.internal.hostname import get_hostname
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.sampling import _inherit_sampling_tags
 from ddtrace.internal.utils.schema.span_attribute_schema import SpanDirection
 from ddtrace.propagation.http import HTTPPropagator
 from ddtrace.propagation.http import _extract_header_value

@@ -11,13 +11,13 @@ from ddtrace.contrib.internal.trace_utils import extract_netloc_and_query_info_f
 from ddtrace.contrib.internal.trace_utils import unwrap
 from ddtrace.contrib.internal.trace_utils import wrap
 from ddtrace.ext import SpanKind
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings._config import config
 from ddtrace.internal.telemetry import get_config as _get_config
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

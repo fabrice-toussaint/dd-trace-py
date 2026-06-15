@@ -16,10 +16,10 @@ from ddtrace.debugging._session import Session
 from ddtrace.debugging._signal.snapshot import Snapshot
 from ddtrace.debugging._uploader import SignalUploader
 from ddtrace.debugging._uploader import UploaderProduct
+from ddtrace.internal.safety import _isinstance
 from ddtrace.internal.utils.compat import NO_EXCEPTION
 from ddtrace.internal.utils.compat import ExcInfoType
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.safety import _isinstance
 from ddtrace.internal.utils.threads import RLock
 from ddtrace.internal.utils.wrapping.context import LazyWrappingContext
 

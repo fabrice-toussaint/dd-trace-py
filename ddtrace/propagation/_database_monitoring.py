@@ -4,15 +4,15 @@ from typing import Union  # noqa:F401
 
 import ddtrace
 from ddtrace import config as dd_config
-from ddtrace.internal.utils import core
 from ddtrace.internal import process_tags
+from ddtrace.internal.settings.peer_service import PeerServiceConfig
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.constants import PROPAGATED_HASH
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings.peer_service import PeerServiceConfig
 from ddtrace.vendor.sqlcommenter import generate_sql_comment as _generate_sql_comment
 
-from ..internal.utils import compat
 from ..internal.settings._database_monitoring import dbm_config
+from ..internal.utils import compat
 from ..internal.utils import get_argument_value
 from ..internal.utils import set_argument_value
 

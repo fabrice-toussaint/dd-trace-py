@@ -2,8 +2,8 @@ from typing import Any
 from typing import Optional
 
 import ddtrace
-from ddtrace.internal.utils.compat import is_wrapted
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils.compat import is_wrapted
 
 from ..internal.utils.logger import get_logger
 

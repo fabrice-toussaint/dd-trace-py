@@ -10,9 +10,9 @@ from ddtrace.appsec._iast._taint_tracking._context import debug_num_tainted_obje
 from ddtrace.appsec._iast._taint_tracking._context import finish_request_context
 from ddtrace.appsec._iast._taint_tracking._context import start_request_context
 from ddtrace.appsec._iast.sampling.vulnerability_detection import update_global_vulnerability_limit
+from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings.asm import config as asm_config
 
 
 log = get_logger(__name__)

@@ -14,9 +14,9 @@ from ddtrace.appsec.ai_guard import Options
 from ddtrace.appsec.ai_guard import ToolCall
 from ddtrace.contrib.internal.trace_utils import unwrap
 from ddtrace.contrib.internal.trace_utils import wrap
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import ai_guard_config
 from ddtrace.internal.utils import get_argument_value
+import ddtrace.internal.utils.logger as ddlogger
 
 
 logger = ddlogger.get_logger(__name__)

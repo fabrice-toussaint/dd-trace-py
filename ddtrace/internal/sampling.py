@@ -12,6 +12,8 @@ from ddtrace.constants import _SINGLE_SPAN_SAMPLING_MAX_PER_SEC
 from ddtrace.constants import _SINGLE_SPAN_SAMPLING_MAX_PER_SEC_NO_LIMIT
 from ddtrace.constants import _SINGLE_SPAN_SAMPLING_MECHANISM
 from ddtrace.constants import _SINGLE_SPAN_SAMPLING_RATE
+from ddtrace.internal.glob_matching import GlobMatcher
+from ddtrace.internal.settings._config import config
 from ddtrace.internal.utils.constants import _KEEP_PRIORITY_INDEX
 from ddtrace.internal.utils.constants import _REJECT_PRIORITY_INDEX
 from ddtrace.internal.utils.constants import MAX_UINT_64BITS
@@ -23,9 +25,7 @@ from ddtrace.internal.utils.constants import SAMPLING_HASH_MODULO
 from ddtrace.internal.utils.constants import SAMPLING_KNUTH_FACTOR
 from ddtrace.internal.utils.constants import SAMPLING_MECHANISM_TO_PRIORITIES
 from ddtrace.internal.utils.constants import SamplingMechanism
-from ddtrace.internal.glob_matching import GlobMatcher
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings._config import config
 
 from .rate_limiter import RateLimiter
 

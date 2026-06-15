@@ -13,12 +13,12 @@ from ddtrace.contrib._events.http_client import HttpClientRequestEvent
 from ddtrace.contrib._events.http_client import HttpClientSendEvent
 from ddtrace.contrib.internal.trace_utils import ext_service
 from ddtrace.ext import SpanKind
+from ddtrace.internal.settings import env
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.compat import ensure_binary
 from ddtrace.internal.utils.compat import ensure_text
 from ddtrace.internal.utils.constants import COMPONENT
-from ddtrace.internal.settings import env
-from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.version import parse_version
 from ddtrace.internal.utils.wrappers import unwrap as _u

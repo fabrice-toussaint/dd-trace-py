@@ -5,9 +5,9 @@ import sys
 from types import ModuleType
 import typing
 
-from ddtrace.internal.utils import core
 from ddtrace.internal.datadog.profiling import stack
 from ddtrace.internal.settings.profiling import config
+from ddtrace.internal.utils import core
 from ddtrace.profiling import collector
 from ddtrace.profiling.collector import _task
 from ddtrace.profiling.collector import threading

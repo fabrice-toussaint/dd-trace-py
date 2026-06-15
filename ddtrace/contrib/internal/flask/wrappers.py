@@ -6,8 +6,8 @@ from ddtrace.contrib import trace_utils
 from ddtrace.contrib.internal.trace_utils import is_tracing_enabled
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils.constants import COMPONENT
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.importlib import func_name
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

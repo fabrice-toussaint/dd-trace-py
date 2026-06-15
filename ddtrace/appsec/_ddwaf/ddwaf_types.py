@@ -14,8 +14,8 @@ from ddtrace.appsec._ddwaf.waf_stubs import ddwaf_context_capsule
 from ddtrace.appsec._ddwaf.waf_stubs import ddwaf_handle_capsule
 from ddtrace.appsec._utils import _observator
 from ddtrace.appsec._utils import unpatching_popen
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

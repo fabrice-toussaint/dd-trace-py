@@ -8,14 +8,14 @@ from ddtrace import config
 from ddtrace import version
 from ddtrace.internal import forksafe
 from ddtrace.internal import process_tags
-from ddtrace.internal.utils.compat import ensure_text
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.runtime import get_runtime_id
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings.crashtracker import config as crashtracker_config
 from ddtrace.internal.settings.profiling import config as profiling_config
 from ddtrace.internal.settings.profiling import config_str
+from ddtrace.internal.utils.compat import ensure_text
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

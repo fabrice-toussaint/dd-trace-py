@@ -4,11 +4,11 @@ from types import FunctionType
 from types import MethodType
 import typing as t
 
-import ddtrace.internal.utils.core as core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.products import manager as product_manager
 from ddtrace.internal.settings._core import ValueSource
 from ddtrace.internal.settings.code_origin import config
+import ddtrace.internal.utils.core as core
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

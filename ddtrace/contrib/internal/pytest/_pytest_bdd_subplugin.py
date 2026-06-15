@@ -21,9 +21,9 @@ from ddtrace.contrib.internal.pytest_bdd.constants import FRAMEWORK
 from ddtrace.contrib.internal.pytest_bdd.constants import STEP_KIND
 from ddtrace.contrib.internal.pytest_bdd.patch import get_version
 from ddtrace.ext import test
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.test_visibility.api import InternalTest
 from ddtrace.internal.test_visibility.api import InternalTestSession
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

@@ -17,6 +17,9 @@ from urllib import parse
 
 from ddtrace.constants import _USER_ID_KEY
 from ddtrace.internal._unpatched import unpatched_open as open  # noqa: A004
+from ddtrace.internal.settings import env
+from ddtrace.internal.utils import _get_metas_to_propagate
+from ddtrace.internal.utils.cache import cached
 from ddtrace.internal.utils.constants import BLOCKED_RESPONSE_HTML
 from ddtrace.internal.utils.constants import BLOCKED_RESPONSE_JSON
 from ddtrace.internal.utils.constants import DEFAULT_TIMEOUT
@@ -24,9 +27,6 @@ from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 from ddtrace.internal.utils.constants import W3C_TRACESTATE_ORIGIN_KEY
 from ddtrace.internal.utils.constants import W3C_TRACESTATE_PARENT_ID_KEY
 from ddtrace.internal.utils.constants import W3C_TRACESTATE_SAMPLING_PRIORITY_KEY
-from ddtrace.internal.settings import env
-from ddtrace.internal.utils import _get_metas_to_propagate
-from ddtrace.internal.utils.cache import cached
 
 
 _W3C_TRACESTATE_INVALID_CHARS_REGEX_VALUE = re.compile(r",|;|~|[^\x20-\x7E]+")

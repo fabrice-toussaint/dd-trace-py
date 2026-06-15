@@ -10,10 +10,10 @@ from ddtrace.appsec._utils import DDWaf_info
 from ddtrace.appsec._utils import Telemetry_result
 from ddtrace.appsec._utils import _observator
 from ddtrace.internal import telemetry
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry.constants import TELEMETRY_LOG_LEVEL
 from ddtrace.internal.telemetry.constants import TELEMETRY_NAMESPACE
+import ddtrace.internal.utils.logger as ddlogger
 
 
 UNKNOWN_VERSION: str = "unknown"

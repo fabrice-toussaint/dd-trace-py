@@ -48,10 +48,10 @@ from ddtrace.internal.ci_visibility.utils import _add_pct_covered_to_span
 from ddtrace.internal.ci_visibility.utils import _add_start_end_source_file_path_data_to_span
 from ddtrace.internal.ci_visibility.utils import _generate_fully_qualified_test_name
 from ddtrace.internal.ci_visibility.utils import get_relative_or_absolute_path_for_path
-from ddtrace.internal.utils.constants import COMPONENT
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings import env
+from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.wrappers import unwrap as _u
 
 

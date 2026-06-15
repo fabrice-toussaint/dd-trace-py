@@ -3,9 +3,9 @@ from typing import Optional
 from ddtrace.internal.ci_visibility.telemetry.constants import ERROR_TYPES
 from ddtrace.internal.ci_visibility.telemetry.constants import GIT_TELEMETRY
 from ddtrace.internal.ci_visibility.telemetry.constants import GIT_TELEMETRY_COMMANDS
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.telemetry import telemetry_writer
 from ddtrace.internal.telemetry.constants import TELEMETRY_NAMESPACE
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

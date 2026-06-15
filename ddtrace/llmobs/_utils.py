@@ -18,8 +18,8 @@ from ddtrace.ext import SpanTypes
 from ddtrace.ext import git as _git
 from ddtrace.ext.ci import _filter_sensitive_info
 from ddtrace.internal import gitmetadata
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.formats import format_trace_id
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.llmobs._constants import DEFAULT_PROMPT_NAME
 from ddtrace.llmobs._constants import INPUT_PROMPT
 from ddtrace.llmobs._constants import INTERNAL_CONTEXT_VARIABLE_KEYS

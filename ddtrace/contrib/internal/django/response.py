@@ -22,19 +22,19 @@ from ddtrace.contrib.internal.django.utils import _before_request_tags
 from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import http
+from ddtrace.internal.settings.integration import IntegrationConfig
+from ddtrace.internal.utils import Block_config
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils import get_blocked
+from ddtrace.internal.utils import http as http_utils
+from ddtrace.internal.utils import set_blocked
 from ddtrace.internal.utils._exceptions import BlockingException
 from ddtrace.internal.utils._exceptions import find_exception
 from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.schema import schematize_url_operation
 from ddtrace.internal.utils.schema.span_attribute_schema import SpanDirection
-from ddtrace.internal.settings.integration import IntegrationConfig
-from ddtrace.internal.utils import Block_config
-from ddtrace.internal.utils import get_argument_value
-from ddtrace.internal.utils import get_blocked
-from ddtrace.internal.utils import http as http_utils
-from ddtrace.internal.utils import set_blocked
 from ddtrace.internal.utils.wrapping import is_wrapped_with
 from ddtrace.internal.utils.wrapping import unwrap
 from ddtrace.internal.utils.wrapping import wrap

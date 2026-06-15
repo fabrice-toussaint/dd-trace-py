@@ -3,8 +3,8 @@ from typing import Any
 from typing import Optional
 
 from ddtrace.internal.utils import core
-from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.llmobs._constants import DISPATCH_ON_TOOL_CALL
 from ddtrace.llmobs._integrations.base import BaseLLMIntegration
 from ddtrace.llmobs._integrations.google_utils import extract_message_from_part_google_genai

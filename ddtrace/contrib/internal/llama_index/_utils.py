@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

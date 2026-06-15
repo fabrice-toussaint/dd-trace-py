@@ -1,5 +1,5 @@
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import ai_guard_config
+import ddtrace.internal.utils.logger as ddlogger
 
 
 logger = ddlogger.get_logger(__name__)

@@ -13,13 +13,13 @@ from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import db
 from ddtrace.ext import redis as redisx
-from ddtrace.internal.utils.constants import COMPONENT
-from ddtrace.internal.utils.schema import schematize_cache_operation
-from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.settings import env
+from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils.formats import CMD_MAX_LEN
 from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.formats import stringify_cache_args
+from ddtrace.internal.utils.schema import schematize_cache_operation
+from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.wrappers import unwrap
 from ddtrace.trace import tracer
 

@@ -14,19 +14,19 @@ from ddtrace.contrib import trace_utils
 from ddtrace.contrib.asgi import TraceMiddleware
 from ddtrace.contrib.internal.trace_utils import with_traced_module
 from ddtrace.ext import http
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils._exceptions import BlockingException
-from ddtrace.internal.utils.compat import is_wrapted
 from ddtrace.internal.endpoints import endpoint_collection
-from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry import get_config as _get_config
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils import get_blocked
 from ddtrace.internal.utils import set_argument_value
+from ddtrace.internal.utils._exceptions import BlockingException
+from ddtrace.internal.utils.compat import is_wrapted
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
+from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.wrappers import unwrap as _u
 from ddtrace.trace import Span  # noqa:F401
 from ddtrace.trace import tracer

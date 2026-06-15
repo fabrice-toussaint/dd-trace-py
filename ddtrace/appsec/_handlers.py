@@ -13,11 +13,11 @@ from ddtrace.appsec._asm_request_context import get_active_asm_context
 from ddtrace.appsec._constants import API_SECURITY
 from ddtrace.appsec._constants import APPSEC
 from ddtrace.appsec._constants import SPAN_DATA_NAMES
-from ddtrace.internal.utils import core
 from ddtrace.internal import telemetry
+from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.constants import FLASK_RESOURCE_FULL
 from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.settings.asm import config as asm_config
 
 
 logger = get_logger(__name__)

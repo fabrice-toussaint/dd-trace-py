@@ -3,9 +3,9 @@ from ddtrace.contrib.internal.kombu.utils import HEADER_POS
 from ddtrace.contrib.internal.kombu.utils import PUBLISH_BODY_IDX
 from ddtrace.contrib.internal.kombu.utils import get_exchange_from_args
 from ddtrace.contrib.internal.kombu.utils import get_routing_key_from_args
-from ddtrace.internal.utils import core
 from ddtrace.internal.datastreams.processor import DsmPathwayCodec
 from ddtrace.internal.datastreams.utils import _calculate_byte_size
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.logger import get_logger
 
 

@@ -32,10 +32,10 @@ import sys
 import types
 
 from ddtrace.internal import forksafe
-from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.utils.module import ModuleWatchdog
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils.logger import get_logger
+from ddtrace.internal.utils.module import ModuleWatchdog
 
 from ._listener import iast_listen
 from ._overhead_control_engine import oce

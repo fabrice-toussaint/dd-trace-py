@@ -18,9 +18,9 @@ from ddtrace.contrib.internal.celery.signals import trace_retry
 from ddtrace.contrib.internal.trace_utils import set_service_and_source
 from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
-from ddtrace.internal.utils import core
 from ddtrace.internal.forksafe import ddtrace_after_in_parent
 from ddtrace.internal.forksafe import ddtrace_before_fork
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.trace import tracer
 

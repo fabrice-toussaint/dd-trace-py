@@ -3,9 +3,9 @@ from wrapt import wrap_function_wrapper as _w
 
 from ddtrace import config
 from ddtrace.contrib.internal.trace_utils import unwrap as _u
-from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.settings._config import _get_config
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.schema import schematize_service_name
 
 from .shared import patched_get_functions
 

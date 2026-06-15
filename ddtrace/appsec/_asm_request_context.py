@@ -24,12 +24,12 @@ from ddtrace.appsec._utils import Telemetry_result
 from ddtrace.appsec._utils import get_triggers
 from ddtrace.appsec._utils import is_inferred_span
 from ddtrace.contrib.internal.trace_utils_base import _normalize_tag_name
-from ddtrace.internal.utils import core
 from ddtrace.internal import telemetry
-from ddtrace.internal.utils._exceptions import BlockingException
-import ddtrace.internal.utils.logger as ddlogger
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry.constants import TELEMETRY_NAMESPACE
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils._exceptions import BlockingException
+import ddtrace.internal.utils.logger as ddlogger
 
 
 if TYPE_CHECKING:

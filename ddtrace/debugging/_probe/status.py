@@ -10,10 +10,10 @@ from ddtrace.debugging._encoding import add_tags
 from ddtrace.debugging._metrics import metrics
 from ddtrace.debugging._probe.model import Probe
 from ddtrace.internal import runtime
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.http import FormData
 from ddtrace.internal.utils.http import connector
 from ddtrace.internal.utils.http import multipart
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 
 

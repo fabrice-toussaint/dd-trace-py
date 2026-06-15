@@ -12,8 +12,8 @@ from typing import Optional  # noqa:F401
 
 from ddtrace.ext import git
 from ddtrace.ext.ci import github_actions
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings import env
+from ddtrace.internal.utils.logger import get_logger
 
 
 # CI app dd_origin tag

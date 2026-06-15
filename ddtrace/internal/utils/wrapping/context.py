@@ -13,9 +13,9 @@ import bytecode
 from bytecode import Bytecode
 
 from ddtrace.internal.assembly import Assembly
+from ddtrace.internal.utils.inspection import link_function_to_code
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.threads import Lock
-from ddtrace.internal.utils.inspection import link_function_to_code
 from ddtrace.internal.utils.wrapping import WrappedFunction
 from ddtrace.internal.utils.wrapping import Wrapper
 from ddtrace.internal.utils.wrapping import get_function_code

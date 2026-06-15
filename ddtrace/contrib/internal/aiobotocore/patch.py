@@ -24,15 +24,15 @@ from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import aws
 from ddtrace.ext import http
-from ddtrace.internal.utils.constants import COMPONENT
-from ddtrace.internal.utils.schema import schematize_cloud_api_operation
-from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.serverless import in_aws_lambda
 from ddtrace.internal.settings import env
 from ddtrace.internal.utils import ArgumentError
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils.formats import asbool
 from ddtrace.internal.utils.formats import deep_getattr
+from ddtrace.internal.utils.schema import schematize_cloud_api_operation
+from ddtrace.internal.utils.schema import schematize_service_name
 from ddtrace.internal.utils.version import parse_version
 from ddtrace.trace import tracer
 

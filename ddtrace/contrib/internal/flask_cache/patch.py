@@ -11,9 +11,9 @@ from ddtrace.contrib.internal.trace_utils import set_service_and_source
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import db
 from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.schema import schematize_cache_operation
 from ddtrace.internal.utils.schema import schematize_service_name
-from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.trace import tracer as ddtracer
 from ddtrace.vendor.debtcollector import deprecate
 

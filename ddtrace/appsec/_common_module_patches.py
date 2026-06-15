@@ -15,11 +15,11 @@ from ddtrace.appsec._metrics import report_rasp_skipped
 from ddtrace.appsec._patch_utils import try_unwrap
 from ddtrace.appsec._patch_utils import try_wrap_function_wrapper
 import ddtrace.contrib.internal.subprocess.patch as subprocess_patch
+from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.utils import core
 from ddtrace.internal.utils._exceptions import BlockingException
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.module import ModuleWatchdog
-from ddtrace.internal.settings.asm import config as asm_config
 
 
 log = get_logger(__name__)

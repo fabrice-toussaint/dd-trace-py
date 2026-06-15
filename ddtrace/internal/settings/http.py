@@ -2,9 +2,9 @@ from typing import Mapping  # noqa:F401
 from typing import Optional  # noqa:F401
 from typing import Union  # noqa:F401
 
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.cache import cachedmethod
 from ddtrace.internal.utils.http import normalize_header_name
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

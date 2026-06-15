@@ -25,13 +25,13 @@ from ddtrace.contrib.internal.aws_durable_execution_sdk_python.trace_checkpoint 
 from ddtrace.contrib.trace_utils import unwrap
 from ddtrace.contrib.trace_utils import wrap
 from ddtrace.ext import aws_durable as aws_durable_ext
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.settings._config import _get_config
 from ddtrace.internal.settings._config import config
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils import set_argument_value
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.trace import tracer
 
 

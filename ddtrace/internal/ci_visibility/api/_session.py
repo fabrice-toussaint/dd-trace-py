@@ -18,8 +18,8 @@ from ddtrace.internal.ci_visibility.constants import TEST_MANAGEMENT_ENABLED
 from ddtrace.internal.ci_visibility.telemetry.constants import EVENT_TYPES
 from ddtrace.internal.ci_visibility.telemetry.events import record_event_created
 from ddtrace.internal.ci_visibility.telemetry.events import record_event_finished
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.test_visibility._efd_mixins import EFDTestStatus
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

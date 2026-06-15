@@ -9,8 +9,8 @@ from pymongo.asynchronous.server import Server as AsyncServer
 
 # project
 from ddtrace.ext import db
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.wrapping import unwrap as _u
 from ddtrace.internal.utils.wrapping import wrap as _w
 from ddtrace.trace import tracer

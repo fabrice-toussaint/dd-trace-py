@@ -29,10 +29,20 @@ from ddtrace.constants import ENV_KEY
 from ddtrace.constants import PID
 from ddtrace.constants import VERSION_KEY
 from ddtrace.internal import atexit
-from ddtrace.internal.utils import core
 from ddtrace.internal import debug
 from ddtrace.internal import forksafe
 from ddtrace.internal import hostname
+from ddtrace.internal.hostname import get_hostname
+from ddtrace.internal.native import PyTracerMetadata
+from ddtrace.internal.native import store_metadata
+from ddtrace.internal.peer_service.processor import PeerServiceProcessor
+from ddtrace.internal.processor.endpoint_call_counter import EndpointCallCounterProcessor
+from ddtrace.internal.runtime import get_runtime_id
+from ddtrace.internal.settings._config import config
+from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.settings.peer_service import _ps_config
+from ddtrace.internal.utils import _get_metas_to_propagate
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.constants import _SERVICE_SOURCE
 from ddtrace.internal.utils.constants import LOG_ATTR_ENV
 from ddtrace.internal.utils.constants import LOG_ATTR_SERVICE
@@ -43,20 +53,10 @@ from ddtrace.internal.utils.constants import LOG_ATTR_VALUE_ZERO
 from ddtrace.internal.utils.constants import LOG_ATTR_VERSION
 from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 from ddtrace.internal.utils.constants import SPAN_API_DATADOG
-from ddtrace.internal.hostname import get_hostname
-from ddtrace.internal.utils.logger import get_logger
-from ddtrace.internal.native import PyTracerMetadata
-from ddtrace.internal.native import store_metadata
-from ddtrace.internal.peer_service.processor import PeerServiceProcessor
-from ddtrace.internal.processor.endpoint_call_counter import EndpointCallCounterProcessor
-from ddtrace.internal.runtime import get_runtime_id
-from ddtrace.internal.utils.schema.processor import BaseServiceProcessor
-from ddtrace.internal.settings._config import config
-from ddtrace.internal.settings.asm import config as asm_config
-from ddtrace.internal.settings.peer_service import _ps_config
-from ddtrace.internal.utils import _get_metas_to_propagate
 from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.formats import format_trace_id
+from ddtrace.internal.utils.logger import get_logger
+from ddtrace.internal.utils.schema.processor import BaseServiceProcessor
 from ddtrace.internal.writer import AgentWriterInterface
 from ddtrace.internal.writer import HTTPWriter
 from ddtrace.vendor.debtcollector import deprecate

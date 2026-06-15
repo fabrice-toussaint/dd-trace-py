@@ -13,8 +13,8 @@ from ddtrace.debugging._signal.collector import SignalCollector
 from ddtrace.debugging._signal.model import SignalTrack
 from ddtrace.internal import agent
 from ddtrace.internal.utils import logger
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.http import connector
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 
 

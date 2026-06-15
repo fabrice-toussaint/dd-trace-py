@@ -6,8 +6,8 @@ from ddtrace.contrib.internal.trace_utils import unwrap
 from ddtrace.contrib.internal.trace_utils import with_traced_module
 from ddtrace.contrib.internal.trace_utils import wrap
 from ddtrace.ext import SpanTypes
-from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.internal.utils import get_argument_value
+from ddtrace.internal.utils.constants import COMPONENT
 from ddtrace.trace import tracer
 
 

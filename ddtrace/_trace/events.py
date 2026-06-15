@@ -6,8 +6,8 @@ from typing import ClassVar
 from typing import Mapping
 from typing import Optional
 
-from ddtrace.internal.utils.core.events import Event
 from ddtrace.internal.settings.integration import IntegrationConfig
+from ddtrace.internal.utils.core.events import Event
 
 
 if TYPE_CHECKING:

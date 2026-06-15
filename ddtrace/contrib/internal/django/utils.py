@@ -19,11 +19,11 @@ from ddtrace.ext import SpanTypes
 from ddtrace.ext import user as _user
 from ddtrace.internal.utils import compat
 from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.formats import stringify_cache_args
 from ddtrace.internal.utils.http import parse_form_multipart
 from ddtrace.internal.utils.http import parse_form_params
 from ddtrace.internal.utils.importlib import func_name
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.propagation._utils import from_wsgi_header
 from ddtrace.trace import Span
 import ddtrace.vendor.xmltodict as xmltodict

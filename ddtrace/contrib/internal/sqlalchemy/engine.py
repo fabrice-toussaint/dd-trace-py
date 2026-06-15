@@ -14,9 +14,9 @@ from ddtrace.ext import db
 from ddtrace.ext import net as netx
 from ddtrace.ext import sql as sqlx
 from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.internal.utils.schema import schematize_database_operation
 from ddtrace.internal.utils.schema import schematize_service_name
-from ddtrace.internal.utils.deprecations import DDTraceDeprecationWarning
 from ddtrace.trace import tracer
 from ddtrace.vendor.debtcollector import deprecate
 
