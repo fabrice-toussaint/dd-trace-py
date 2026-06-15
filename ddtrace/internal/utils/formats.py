@@ -7,9 +7,8 @@ from typing import Union  # noqa:F401
 
 from ddtrace.internal.native._native import flatten_key_value  # noqa: F401
 from ddtrace.internal.native._native import is_sequence  # noqa: F401
+from ddtrace.internal.utils.compat import ensure_text
 from ddtrace.internal.utils.constants import MAX_UINT_64BITS  # noqa:F401
-
-from ..compat import ensure_text
 
 
 VALUE_PLACEHOLDER = "?"
