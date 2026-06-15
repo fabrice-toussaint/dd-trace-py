@@ -1,15 +1,15 @@
 from ddtrace.internal.runtime import get_runtime_id
+from ddtrace.internal.utils.constants import LANG
+from ddtrace.internal.utils.constants import LANG_INTERPRETER
+from ddtrace.internal.utils.constants import LANG_VERSION
+from ddtrace.internal.utils.constants import SERVICE
+from ddtrace.internal.utils.constants import TRACER_VERSION
 
 from ...constants import ENV_KEY
 from ...constants import VERSION_KEY
 from .. import process_tags
 from ..constants import DEFAULT_SERVICE_NAME
 from .collector import ValueCollector
-from .constants import LANG
-from .constants import LANG_INTERPRETER
-from .constants import LANG_VERSION
-from .constants import SERVICE
-from .constants import TRACER_VERSION
 
 
 class RuntimeTagCollector(ValueCollector):

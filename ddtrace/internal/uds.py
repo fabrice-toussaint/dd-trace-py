@@ -2,7 +2,8 @@ import http.client as httplib
 import socket
 from typing import Any  # noqa:F401
 
-from .constants import DEFAULT_TIMEOUT
+from ddtrace.internal.utils.constants import DEFAULT_TIMEOUT
+
 from .http import HTTPConnectionMixin
 
 

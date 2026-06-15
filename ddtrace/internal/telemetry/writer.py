@@ -14,6 +14,10 @@ from ddtrace.internal.endpoints import endpoint_collection
 from ddtrace.internal.packages import is_user_code
 from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings._telemetry import config
+from ddtrace.internal.utils.constants import TELEMETRY_APM_PRODUCT
+from ddtrace.internal.utils.constants import TELEMETRY_EVENT_TYPE
+from ddtrace.internal.utils.constants import TELEMETRY_LOG_LEVEL
+from ddtrace.internal.utils.constants import TELEMETRY_NAMESPACE
 from ddtrace.internal.utils.http import get_connection
 from ddtrace.internal.utils.logger import get_logger
 
@@ -27,10 +31,6 @@ from ..runtime import get_runtime_id
 from ..service import ServiceStatus
 from ..utils.time import StopWatch
 from ..utils.version import version as tracer_version
-from .constants import TELEMETRY_APM_PRODUCT
-from .constants import TELEMETRY_EVENT_TYPE
-from .constants import TELEMETRY_LOG_LEVEL
-from .constants import TELEMETRY_NAMESPACE
 from .data import get_application
 from .data import get_host_info
 from .data import get_python_config_vars

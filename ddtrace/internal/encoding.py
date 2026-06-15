@@ -5,6 +5,7 @@ from typing import Any  # noqa:F401
 from typing import Optional
 
 from ddtrace.internal.settings._agent import config as agent_config  # noqa:F401
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.threads import RLock
 
 from ._encoding import BufferedEncoder
@@ -14,7 +15,6 @@ from ._encoding import ListStringTable
 from ._encoding import MsgpackEncoderV04
 from ._encoding import MsgpackEncoderV05
 from .compat import ensure_text
-from .logger import get_logger
 
 
 __all__ = [

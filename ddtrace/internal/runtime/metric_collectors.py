@@ -1,16 +1,17 @@
 import os
 
+from ddtrace.internal.utils.constants import CPU_PERCENT
+from ddtrace.internal.utils.constants import CPU_TIME_SYS
+from ddtrace.internal.utils.constants import CPU_TIME_USER
+from ddtrace.internal.utils.constants import CTX_SWITCH_INVOLUNTARY
+from ddtrace.internal.utils.constants import CTX_SWITCH_VOLUNTARY
+from ddtrace.internal.utils.constants import GC_COUNT_GEN0
+from ddtrace.internal.utils.constants import GC_COUNT_GEN1
+from ddtrace.internal.utils.constants import GC_COUNT_GEN2
+from ddtrace.internal.utils.constants import MEM_RSS
+from ddtrace.internal.utils.constants import THREAD_COUNT
+
 from .collector import ValueCollector
-from .constants import CPU_PERCENT
-from .constants import CPU_TIME_SYS
-from .constants import CPU_TIME_USER
-from .constants import CTX_SWITCH_INVOLUNTARY
-from .constants import CTX_SWITCH_VOLUNTARY
-from .constants import GC_COUNT_GEN0
-from .constants import GC_COUNT_GEN1
-from .constants import GC_COUNT_GEN2
-from .constants import MEM_RSS
-from .constants import THREAD_COUNT
 
 
 class RuntimeMetricCollector(ValueCollector):

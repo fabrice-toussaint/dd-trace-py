@@ -19,9 +19,9 @@ from ._utils cimport PyBytesLike_Check
 #   in both `ddtrace` and `ddtrace.internal`
 
 from ..constants import _ORIGIN_KEY as ORIGIN_KEY
-from .constants import SPAN_LINKS_KEY
-from .constants import SPAN_EVENTS_KEY
-from .logger import get_logger
+from ddtrace.internal.utils.constants import SPAN_LINKS_KEY
+from ddtrace.internal.utils.constants import SPAN_EVENTS_KEY
+from ddtrace.internal.utils.logger import get_logger
 from .._trace._limits import MAX_SPAN_META_VALUE_LEN
 from .._trace._limits import TRUNCATED_SPAN_ATTRIBUTE_LEN
 from .settings._agent import config as agent_config

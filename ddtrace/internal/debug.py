@@ -12,11 +12,10 @@ from ddtrace.internal.settings import env
 from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.utils.cache import callonce
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.writer import AgentWriterInterface
 from ddtrace.internal.writer import LogWriter
 from ddtrace.version import __version__
-
-from .logger import get_logger
 
 
 logger = get_logger(__name__)
