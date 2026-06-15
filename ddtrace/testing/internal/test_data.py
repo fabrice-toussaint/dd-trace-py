@@ -177,7 +177,7 @@ class TestRun(TestItem["Test", t.NoReturn]):
         return self.attempt_number > 0
 
     def has_failed_all_retries(self) -> bool:
-        return self.tags.get(TestTag.HAS_FAILED_ALL_RETRIES) == TAG_TRUE
+        return bool(self.tags.get(TestTag.HAS_FAILED_ALL_RETRIES) == TAG_TRUE)
 
     def mark_benchmark(self) -> None:
         self.tags[TestTag.TEST_TYPE] = TestType.BENCHMARK
@@ -188,7 +188,7 @@ class TestRun(TestItem["Test", t.NoReturn]):
     # Selenium / RUM functionality. These tags are only available after the test has finished and ddtrace span tags have
     # been copied over to the test run object.
     def is_rum(self) -> bool:
-        return self.tags.get(TestTag.IS_RUM_ACTIVE) == TAG_TRUE
+        return bool(self.tags.get(TestTag.IS_RUM_ACTIVE) == TAG_TRUE)
 
     def get_browser_driver(self) -> t.Optional[str]:
         return self.tags.get(TestTag.BROWSER_DRIVER)
@@ -259,16 +259,16 @@ class Test(TestItem["TestSuite", "TestRun"]):
         self.tags[TestTag.CODEOWNERS] = json.dumps(owners)
 
     def is_new(self) -> bool:
-        return self.tags.get(TestTag.IS_NEW) == TAG_TRUE
+        return bool(self.tags.get(TestTag.IS_NEW) == TAG_TRUE)
 
     def is_quarantined(self) -> bool:
-        return self.tags.get(TestTag.IS_QUARANTINED) == TAG_TRUE
+        return bool(self.tags.get(TestTag.IS_QUARANTINED) == TAG_TRUE)
 
     def is_disabled(self) -> bool:
-        return self.tags.get(TestTag.IS_DISABLED) == TAG_TRUE
+        return bool(self.tags.get(TestTag.IS_DISABLED) == TAG_TRUE)
 
     def is_attempt_to_fix(self) -> bool:
-        return self.tags.get(TestTag.IS_ATTEMPT_TO_FIX) == TAG_TRUE
+        return bool(self.tags.get(TestTag.IS_ATTEMPT_TO_FIX) == TAG_TRUE)
 
     def has_parameters(self) -> bool:
         return TestTag.PARAMETERS in self.tags
@@ -297,7 +297,7 @@ class Test(TestItem["TestSuite", "TestRun"]):
             pass
 
     def is_unskippable(self) -> bool:
-        return self.tags.get(TestTag.ITR_UNSKIPPABLE) == TAG_TRUE
+        return bool(self.tags.get(TestTag.ITR_UNSKIPPABLE) == TAG_TRUE)
 
     def mark_forced_run(self) -> None:
         self.tags[TestTag.ITR_FORCED_RUN] = TAG_TRUE
@@ -307,7 +307,7 @@ class Test(TestItem["TestSuite", "TestRun"]):
             pass
 
     def is_forced_run(self) -> bool:
-        return self.tags.get(TestTag.ITR_FORCED_RUN) == TAG_TRUE
+        return bool(self.tags.get(TestTag.ITR_FORCED_RUN) == TAG_TRUE)
 
     def mark_skipped_by_itr(self) -> None:
         self.tags[TestTag.SKIPPED_BY_ITR] = TAG_TRUE
@@ -318,7 +318,7 @@ class Test(TestItem["TestSuite", "TestRun"]):
             pass
 
     def is_skipped_by_itr(self) -> bool:
-        return self.tags.get(TestTag.SKIPPED_BY_ITR) == TAG_TRUE
+        return bool(self.tags.get(TestTag.SKIPPED_BY_ITR) == TAG_TRUE)
 
     # Early Flake Detection.
 
