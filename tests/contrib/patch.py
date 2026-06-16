@@ -738,7 +738,7 @@ class PatchTestCase(object):
                         """
                         import sys
 
-                        from ddtrace.internal.module import ModuleWatchdog
+                        from ddtrace.internal.utils.module import ModuleWatchdog
 
                         from wrapt import wrap_function_wrapper as wrap
 
@@ -837,7 +837,7 @@ class PatchTestCase(object):
                     dedent(
                         """
                         import sys
-                        from ddtrace.internal.module import ModuleWatchdog
+                        from ddtrace.internal.utils.module import ModuleWatchdog
                         from wrapt import wrap_function_wrapper as wrap
 
                         supported_versions_called = False

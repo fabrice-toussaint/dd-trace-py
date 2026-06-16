@@ -12,7 +12,7 @@ from ddtrace.contrib.internal.azure_functions.shared import wrap_durable_trigger
 from ddtrace.contrib.internal.trace_utils import int_service
 from ddtrace.ext import SpanKind
 from ddtrace.ext import SpanTypes
-from ddtrace.internal.schema import schematize_cloud_faas_operation
+from ddtrace.internal.utils.schema import schematize_cloud_faas_operation
 from tests.utils import TracerSpanContainer
 from tests.utils import scoped_tracer
 from tests.webclient import Client

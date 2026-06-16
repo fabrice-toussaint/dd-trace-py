@@ -7,8 +7,8 @@ from warnings import warn
 import mock
 import pytest
 
-from ddtrace.internal.module import ModuleWatchdog
-from ddtrace.internal.module import origin
+from ddtrace.internal.utils.module import ModuleWatchdog
+from ddtrace.internal.utils.module import origin
 from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 import tests.test_module
 from tests.utils import DDTRACE_PATH
@@ -55,7 +55,7 @@ def module_watchdog():
 def test_watchdog_install_uninstall():
     import sys
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     if ModuleWatchdog.is_installed():
         ModuleWatchdog.uninstall()
@@ -106,7 +106,7 @@ def test_import_origin_hook_for_module_not_yet_imported():
 
     from mock import mock
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     name = "tests.test_module"
     path = Path(os.getenv("MODULE_ORIGIN"))
@@ -140,7 +140,7 @@ def test_import_module_hook_for_module_not_yet_imported():
 
     from mock import mock
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     name = "tests.test_module"
     hook = mock.Mock()
@@ -173,7 +173,7 @@ def test_module_deleted():
     from pathlib import Path
     import sys
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     if "json" in sys.modules:
         del sys.modules["json"]
@@ -282,7 +282,7 @@ def test_module_watchdog_subclasses():
 
 @pytest.mark.subprocess
 def test_module_import_hierarchy():
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     class ImportCatcher(ModuleWatchdog):
         imports = set()
@@ -324,7 +324,7 @@ def test_get_by_origin(module_watchdog):
 def test_module_watchdog_propagation():
     # Test that the module watchdog propagates the module hooks to each
     # installed subclass.
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     class BaseCollector(ModuleWatchdog):
         def __init__(self):
@@ -400,7 +400,7 @@ def test_module_watchdog_weakref():
 
     sys.modules["bogus"] = str.__init__  # Cannot create weak ref to method_descriptor
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     instance = ModuleWatchdog._instance
     instance._om = None
@@ -502,7 +502,7 @@ def test_module_watchdog_does_not_rewrap_get_code():
     """Ensures that self.loader.get_code() does not raise an error when the module is reloaded many times"""
     from importlib import reload
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     ModuleWatchdog.install()
 
@@ -588,7 +588,7 @@ def test_module_watchdog_no_interal_frames_in_import_exceptions(module_watchdog)
     try:
         import tests.submod.import_test  # noqa:F401
     except ImportError as e:
-        import ddtrace.internal.module as m
+        import ddtrace.internal.utils.module as m
 
         sources = set()
 
@@ -615,7 +615,7 @@ def test_module_watchdog_find_spec_no_cross_thread_deadlock():
     import sys
     import threading
 
-    from ddtrace.internal.module import ModuleWatchdog
+    from ddtrace.internal.utils.module import ModuleWatchdog
 
     bootstrap = sys.modules.get("importlib._bootstrap")
     if bootstrap is None or not hasattr(bootstrap, "_get_module_lock"):

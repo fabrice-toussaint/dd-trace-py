@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from ddtrace.internal.schema.processor import BaseServiceProcessor
+from ddtrace.internal.utils.schema.processor import BaseServiceProcessor
 from tests.conftest import DEFAULT_DDTRACE_SUBPROCESS_TEST_SERVICE_NAME
 
 
@@ -26,7 +26,7 @@ import sys
 
 from ddtrace import config
 from ddtrace.constants import _BASE_SERVICE_KEY
-from ddtrace.internal.schema.processor import BaseServiceProcessor
+from ddtrace.internal.utils.schema.processor import BaseServiceProcessor
 from ddtrace.trace import Span
 from tests.internal.service_name.test_processor import processor
 
@@ -84,7 +84,7 @@ def test_base_service_runs_in_lambda():
     import os
 
     from ddtrace.constants import _BASE_SERVICE_KEY
-    from ddtrace.internal.schema.processor import BaseServiceProcessor
+    from ddtrace.internal.utils.schema.processor import BaseServiceProcessor
     from ddtrace.trace import Span
 
     processor = BaseServiceProcessor()

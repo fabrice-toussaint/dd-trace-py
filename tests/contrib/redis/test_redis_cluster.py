@@ -4,7 +4,7 @@ import redis
 
 from ddtrace.contrib.internal.redis.patch import patch
 from ddtrace.contrib.internal.redis.patch import unpatch
-from ddtrace.internal.schema import DEFAULT_SPAN_SERVICE_NAME
+from ddtrace.internal.utils.schema import DEFAULT_SPAN_SERVICE_NAME
 from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from tests.contrib.config import REDISCLUSTER_CONFIG
 from tests.utils import TracerTestCase
