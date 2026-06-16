@@ -124,7 +124,7 @@ import {package}
         ("ddtrace.data_streams", "set_consume_checkpoint"),
         ("ddtrace.debugging._exception.replay", "SpanExceptionHandler"),
         ("ddtrace.debugging._uploader", "SignalUploader"),
-        ("ddtrace.internal", "core"),
+        ("ddtrace.internal.utils", "core"),
         ("ddtrace.internal.utils._exceptions", "BlockingException"),
         ("ddtrace.internal.appsec.product", "start"),
         ("ddtrace.internal.telemetry", "telemetry_writer"),
