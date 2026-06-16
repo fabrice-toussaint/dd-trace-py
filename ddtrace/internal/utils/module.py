@@ -39,10 +39,6 @@ _post_run_module_hooks: list[ModuleHookType] = []
 
 
 def _wrapped_run_code(*args: t.Any, **kwargs: t.Any) -> dict[str, t.Any]:
-    # DEV: If we are calling this wrapper then _run_code must have been set to
-    # the original runpy._run_code.
-    assert _run_code is not None
-
     code = t.cast(CodeType, get_argument_value(args, kwargs, 0, "code"))
     mod_name = t.cast(str, get_argument_value(args, kwargs, 3, "mod_name"))
 
