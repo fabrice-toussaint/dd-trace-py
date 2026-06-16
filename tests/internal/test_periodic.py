@@ -714,7 +714,7 @@ def test_timer_reset_during_fork_does_not_break_stop():
     so a deferred-start worker is replaced cleanly. The reset request is
     still honoured — the new worker's deferred ``start()`` fires post-fork.
     """
-    from ddtrace.internal import threads as _threads_mod
+    from ddtrace.internal.utils import threads as _threads_mod
 
     class _TestTimer(periodic.Timer):
         def timeout(self):
