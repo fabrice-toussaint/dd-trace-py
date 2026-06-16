@@ -24,10 +24,6 @@ from ddtrace.ext.git import extract_workspace_path
 from ddtrace.internal.settings import env
 from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings._telemetry import config as telemetry_config
-from ddtrace.internal.utils.constants import AGENTLESS_API_KEY_HEADER_NAME
-from ddtrace.internal.utils.constants import AGENTLESS_DEFAULT_SITE
-from ddtrace.internal.utils.constants import GIT_API_BASE_PATH
-from ddtrace.internal.utils.constants import REQUESTS_MODE
 from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 from ddtrace.trace import Tracer  # noqa: F401
@@ -40,6 +36,10 @@ from ..utils.http import Response
 from ..utils.http import get_connection
 from ..utils.http import verify_url
 from ..utils.time import StopWatch
+from .constants import AGENTLESS_API_KEY_HEADER_NAME
+from .constants import AGENTLESS_DEFAULT_SITE
+from .constants import GIT_API_BASE_PATH
+from .constants import REQUESTS_MODE
 from .telemetry.constants import ERROR_TYPES
 from .telemetry.constants import GIT_TELEMETRY_COMMANDS
 from .telemetry.git import record_git_command

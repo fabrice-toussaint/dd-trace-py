@@ -10,14 +10,6 @@ from ddtrace.internal.ci_visibility.constants import MODULE_TYPE
 from ddtrace.internal.ci_visibility.constants import SESSION_TYPE
 from ddtrace.internal.ci_visibility.constants import SUITE_TYPE
 from ddtrace.internal.settings._agent import config as agent_config
-from ddtrace.internal.utils.constants import AGENTLESS_BASE_URL
-from ddtrace.internal.utils.constants import AGENTLESS_COVERAGE_BASE_URL
-from ddtrace.internal.utils.constants import AGENTLESS_COVERAGE_ENDPOINT
-from ddtrace.internal.utils.constants import AGENTLESS_COVERAGE_REPORT_BASE_URL
-from ddtrace.internal.utils.constants import AGENTLESS_DEFAULT_SITE
-from ddtrace.internal.utils.constants import AGENTLESS_ENDPOINT
-from ddtrace.internal.utils.constants import COVERAGE_REPORT_UPLOAD_ENDPOINT
-from ddtrace.internal.utils.constants import EVP_PROXY_COVERAGE_ENDPOINT
 from ddtrace.internal.utils.time import StopWatch
 from ddtrace.vendor.dogstatsd import DogStatsd  # noqa:F401
 from ddtrace.version import __version__
@@ -29,6 +21,14 @@ from ..evp_proxy.constants import EVP_SUBDOMAIN_HEADER_NAME
 from ..runtime import get_runtime_id
 from ..writer import HTTPWriter
 from ..writer import WriterClientBase
+from .constants import AGENTLESS_BASE_URL
+from .constants import AGENTLESS_COVERAGE_BASE_URL
+from .constants import AGENTLESS_COVERAGE_ENDPOINT
+from .constants import AGENTLESS_COVERAGE_REPORT_BASE_URL
+from .constants import AGENTLESS_DEFAULT_SITE
+from .constants import AGENTLESS_ENDPOINT
+from .constants import COVERAGE_REPORT_UPLOAD_ENDPOINT
+from .constants import EVP_PROXY_COVERAGE_ENDPOINT
 from .encoder import CIVisibilityCoverageEncoderV02
 from .encoder import CIVisibilityCoverageReportEncoder
 from .encoder import CIVisibilityEncoderV01

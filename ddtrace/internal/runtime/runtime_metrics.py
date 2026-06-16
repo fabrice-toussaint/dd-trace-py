@@ -4,15 +4,15 @@ from typing import Optional  # noqa:F401
 
 import ddtrace
 from ddtrace.internal import atexit
-from ddtrace.internal.utils.constants import DEFAULT_RUNTIME_METRICS
-from ddtrace.internal.utils.constants import DEFAULT_RUNTIME_METRICS_INTERVAL
-from ddtrace.internal.utils.constants import EXPERIMENTAL_FEATURES
 from ddtrace.internal.utils.threads import Lock
 from ddtrace.vendor.dogstatsd import DogStatsd
 
 from .. import periodic
 from ..dogstatsd import get_dogstatsd_client
 from ..logger import get_logger
+from .constants import DEFAULT_RUNTIME_METRICS
+from .constants import DEFAULT_RUNTIME_METRICS_INTERVAL
+from .constants import EXPERIMENTAL_FEATURES
 from .metric_collectors import GCRuntimeMetricCollector
 from .metric_collectors import PSUtilRuntimeMetricCollector
 from .tag_collectors import PlatformTagCollector
