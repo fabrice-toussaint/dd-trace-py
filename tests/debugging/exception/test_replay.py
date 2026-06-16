@@ -584,7 +584,7 @@ def test_on_span_exception_skips_empty_chain():
 
 def test_span_exception_handler_enable_idempotent():
     """SpanExceptionHandler.enable is a no-op when already enabled (lines 388-389)."""
-    with mock.patch.object(replay.SignalUploader, "register"), mock.patch("ddtrace.internal.core.on"):
+    with mock.patch.object(replay.SignalUploader, "register"), mock.patch("ddtrace.internal.utils.core.on"):
         try:
             replay.SpanExceptionHandler.enable()
             first_instance = replay.SpanExceptionHandler._instance
@@ -593,7 +593,7 @@ def test_span_exception_handler_enable_idempotent():
             assert replay.SpanExceptionHandler._instance is first_instance
         finally:
             with (
-                mock.patch("ddtrace.internal.core.reset_listeners"),
+                mock.patch("ddtrace.internal.utils.core.reset_listeners"),
                 mock.patch.object(replay.SignalUploader, "unregister"),
             ):
                 replay.SpanExceptionHandler.disable()

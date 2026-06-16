@@ -6,13 +6,13 @@ import pytest
 from ddtrace._trace.events import TracingEvent
 from ddtrace._trace.subscribers._base import TracingSubscriber
 from ddtrace.constants import SPAN_KIND
-from ddtrace.internal import core
-from ddtrace.internal.constants import COMPONENT
-from ddtrace.internal.core import event_hub
-from ddtrace.internal.core.events import Event
-from ddtrace.internal.core.events import event_field
-from ddtrace.internal.core.subscriber import ContextSubscriber
-from ddtrace.internal.core.subscriber import Subscriber
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils.constants import COMPONENT
+from ddtrace.internal.utils.core import event_hub
+from ddtrace.internal.utils.core.events import Event
+from ddtrace.internal.utils.core.events import event_field
+from ddtrace.internal.utils.core.subscriber import ContextSubscriber
+from ddtrace.internal.utils.core.subscriber import Subscriber
 from ddtrace.trace import tracer
 
 

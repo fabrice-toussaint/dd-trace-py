@@ -23,22 +23,22 @@ from ddtrace.internal.settings._opentelemetry import _is_otlp_traces_exporter_en
 from ddtrace.internal.settings._opentelemetry import otel_config
 from ddtrace.internal.settings.asm import ai_guard_config
 from ddtrace.internal.settings.asm import config as asm_config
+from ddtrace.internal.utils import compat
+from ddtrace.internal.utils.constants import _HTTPLIB_NO_TRACE_REQUEST
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 from ddtrace.version import __version__
 
 from ...constants import _KEEP_SPANS_RATE_KEY
-from .. import compat
 from .. import periodic
 from .. import process_tags
 from .. import service
 from .._encoding import BufferFull
 from .._encoding import BufferItemTooLarge
 from ..agent import get_connection
-from ..constants import _HTTPLIB_NO_TRACE_REQUEST
 from ..dogstatsd import get_dogstatsd_client
 from ..encoding import JSONEncoderV2
 from ..gitmetadata import get_git_tags
-from ..logger import get_logger
 from ..serverless import has_aws_lambda_agent_extension
 from ..serverless import in_aws_lambda
 from ..serverless import in_azure_function

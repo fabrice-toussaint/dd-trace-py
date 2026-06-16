@@ -47,7 +47,7 @@ The ``scripts/run-tests`` script handles this automatically:
 
     # Run test suites affected by source changes
     $ scripts/run-tests ddtrace/contrib/django/patch.py
-    $ scripts/run-tests ddtrace/internal/core/event_hub.py
+    $ scripts/run-tests ddtrace/internal/utils/core/event_hub.py
 
     # Run test suites containing these tests
     $ scripts/run-tests tests/contrib/django/

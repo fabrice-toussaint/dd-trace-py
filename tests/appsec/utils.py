@@ -5,7 +5,7 @@ import typing
 from ddtrace.appsec import _asm_request_context
 from ddtrace.appsec._processor import AppSecSpanProcessor
 from ddtrace.ext import SpanTypes
-import ddtrace.internal.core as core
+import ddtrace.internal.utils.core as core
 from ddtrace.trace import Span
 from ddtrace.trace import tracer as default_tracer
 from tests.utils import override_global_config

@@ -1,7 +1,7 @@
 import httpretty
 import pytest
 
-from ddtrace.internal.compat import PYTHON_VERSION_INFO
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.internal.utils.http import connector
 from ddtrace.internal.utils.http import parse_form_multipart
 

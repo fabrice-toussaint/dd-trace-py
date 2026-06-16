@@ -132,7 +132,7 @@ def test_blocking_exception_correctly_propagated():
 
 def test_log_waf_callback(caplog):
     from ddtrace import tracer
-    import ddtrace.internal.logger as ddlogger
+    import ddtrace.internal.utils.logger as ddlogger
 
     with tracer.trace("test", service="test_service") as span:
         with caplog.at_level(logging.WARNING), override_global_config({"_asm_enabled": True}):

@@ -835,7 +835,7 @@ def test_apm_sampling_rules_override():
 @pytest.mark.subprocess(env={"DD_REMOTE_CONFIGURATION_ENABLED": "false"})
 def test_apm_tracing_rc_handlers_dispatched_from_products():
     """APMTracingCallback.dispatch routes lib_config to handlers registered via on()."""
-    from ddtrace.internal.core.event_hub import on
+    from ddtrace.internal.utils.core.event_hub import on
     from ddtrace.internal.remoteconfig import ConfigMetadata
     from ddtrace.internal.remoteconfig import Payload
     from ddtrace.internal.remoteconfig.products.apm_tracing import APMTracingCallback
@@ -877,7 +877,7 @@ def test_apm_tracing_same_config_id_delete_is_not_skipped():
     """
     import ddtrace
     from ddtrace._trace.product import apm_tracing_rc as tracer_rc
-    from ddtrace.internal.core.event_hub import on
+    from ddtrace.internal.utils.core.event_hub import on
     from ddtrace.internal.remoteconfig import ConfigMetadata
     from ddtrace.internal.remoteconfig import Payload
     from ddtrace.internal.remoteconfig.products.apm_tracing import APMTracingCallback

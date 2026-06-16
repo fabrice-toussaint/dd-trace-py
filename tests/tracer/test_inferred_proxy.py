@@ -3,7 +3,7 @@ import pytest
 from ddtrace._trace._inferred_proxy import INFERRED_SPAN_NAMES
 from ddtrace._trace._inferred_proxy import create_inferred_proxy_span_if_headers_exist
 from ddtrace._trace.span import Span
-from ddtrace.internal.core import ExecutionContext
+from ddtrace.internal.utils.core import ExecutionContext
 
 
 @pytest.mark.parametrize("missing_resource_path", [False, True])

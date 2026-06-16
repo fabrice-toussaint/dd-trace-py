@@ -7,7 +7,7 @@ import ddtrace
 from ddtrace.debugging._origin.span import SpanCodeOriginProcessorEntry
 from ddtrace.debugging._session import Session
 from ddtrace.ext import SpanTypes
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 from tests.debugging.mocking import MockSignalUploader
 from tests.utils import TracerTestCase
 

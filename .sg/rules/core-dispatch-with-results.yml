@@ -3,8 +3,8 @@ message: Avoid using `dispatch_with_results()` - use `core.dispatch()` instead
 severity: warning
 language: python
 ignores:
-  - "ddtrace/internal/core/__init__.py"
-  - "ddtrace/internal/core/event_hub.py"
+  - "ddtrace/internal/utils/core/__init__.py"
+  - "ddtrace/internal/utils/core/event_hub.py"
   - "tests/internal/test_context_events_api.py"
 rule:
   any:
@@ -13,18 +13,18 @@ rule:
     - pattern: dispatch_with_results($$$ARGS)
     - pattern: event_hub.dispatch_with_results($$$ARGS)
     # Match imports of dispatch_with_results
-    - pattern: from ddtrace.internal.core import dispatch_with_results
-    - pattern: from ddtrace.internal.core import dispatch_with_results as $ALIAS
-    - pattern: from ddtrace.internal.core import $$$IMPORTS, dispatch_with_results
-    - pattern: from ddtrace.internal.core import $$$IMPORTS, dispatch_with_results as $ALIAS
-    - pattern: from ddtrace.internal.core import dispatch_with_results, $$$IMPORTS
-    - pattern: from ddtrace.internal.core import dispatch_with_results as $ALIAS, $$$IMPORTS
-    - pattern: from ddtrace.internal.core.event_hub import dispatch_with_results
-    - pattern: from ddtrace.internal.core.event_hub import dispatch_with_results as $ALIAS
-    - pattern: from ddtrace.internal.core.event_hub import $$$IMPORTS, dispatch_with_results
-    - pattern: from ddtrace.internal.core.event_hub import $$$IMPORTS, dispatch_with_results as $ALIAS
-    - pattern: from ddtrace.internal.core.event_hub import dispatch_with_results, $$$IMPORTS
-    - pattern: from ddtrace.internal.core.event_hub import dispatch_with_results as $ALIAS, $$$IMPORTS
+    - pattern: from ddtrace.internal.utils.core import dispatch_with_results
+    - pattern: from ddtrace.internal.utils.core import dispatch_with_results as $ALIAS
+    - pattern: from ddtrace.internal.utils.core import $$$IMPORTS, dispatch_with_results
+    - pattern: from ddtrace.internal.utils.core import $$$IMPORTS, dispatch_with_results as $ALIAS
+    - pattern: from ddtrace.internal.utils.core import dispatch_with_results, $$$IMPORTS
+    - pattern: from ddtrace.internal.utils.core import dispatch_with_results as $ALIAS, $$$IMPORTS
+    - pattern: from ddtrace.internal.utils.core.event_hub import dispatch_with_results
+    - pattern: from ddtrace.internal.utils.core.event_hub import dispatch_with_results as $ALIAS
+    - pattern: from ddtrace.internal.utils.core.event_hub import $$$IMPORTS, dispatch_with_results
+    - pattern: from ddtrace.internal.utils.core.event_hub import $$$IMPORTS, dispatch_with_results as $ALIAS
+    - pattern: from ddtrace.internal.utils.core.event_hub import dispatch_with_results, $$$IMPORTS
+    - pattern: from ddtrace.internal.utils.core.event_hub import dispatch_with_results as $ALIAS, $$$IMPORTS
 constraints:
   # Exclude the implementation files where it's defined or exported
   ALIAS:
@@ -62,6 +62,6 @@ note: |
   Note: try/except will block all other listeners from running after the exception is raised.
 
   This rule does not apply to:
-  - The implementation in ddtrace/internal/core/event_hub.py
-  - The export in ddtrace/internal/core/__init__.py
+  - The implementation in ddtrace/internal/utils/core/event_hub.py
+  - The export in ddtrace/internal/utils/core/__init__.py
   - Test files and benchmarks

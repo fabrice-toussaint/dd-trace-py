@@ -13,8 +13,8 @@ from ddtrace.constants import ERROR_MSG
 from ddtrace.constants import ERROR_STACK
 from ddtrace.constants import ERROR_TYPE
 from ddtrace.ext import SpanTypes
-from ddtrace.internal import core
-from ddtrace.internal.compat import PYTHON_VERSION_INFO
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.trace import Span
 from tests.subprocesstest import run_in_subprocess
 from tests.utils import TracerTestCase

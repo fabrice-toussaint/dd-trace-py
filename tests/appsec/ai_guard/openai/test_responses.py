@@ -1256,7 +1256,7 @@ def test_listeners_registered():
     dispatch would no-op and AI Guard would silently fail open on Responses
     traffic.
     """
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
 
     assert core.has_listeners("openai.responses.create.before")
     assert core.has_listeners("openai.responses.create.after")

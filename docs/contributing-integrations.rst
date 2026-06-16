@@ -42,7 +42,7 @@ that can store configuration data in memory in a manner that is accessible from 
 ``Pin`` objects are most often used for storing configuration data scoped to a given integration, such as
 enable/disable flags and service name overrides.
 
-The Core API in ``ddtrace.internal.core`` is the abstraction layer between the integration code and code for
+The Core API in ``ddtrace.internal.utils.core`` is the abstraction layer between the integration code and code for
 Products. The integration builds and maintains a tree of ``ExecutionContext`` objects representing the state
 of the library's execution by calling ``core.context_with_data``. The integration also emits events indicating
 interesting occurrences in the library at runtime via ``core.dispatch``. This approach means that integrations

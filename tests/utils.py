@@ -25,10 +25,8 @@ import ddtrace
 from ddtrace import config as dd_config
 from ddtrace.constants import _SPAN_MEASURED_KEY
 from ddtrace.ext import http
-from ddtrace.internal import core
 from ddtrace.internal import process_tags
 from ddtrace.internal.ci_visibility.writer import CIVisibilityWriter
-from ddtrace.internal.constants import HIGHER_ORDER_TRACE_ID_BITS
 from ddtrace.internal.encoding import JSONEncoder
 from ddtrace.internal.encoding import MsgpackEncoderV04 as Encoder
 from ddtrace.internal.packages import Distribution
@@ -37,12 +35,14 @@ from ddtrace.internal.packages import _third_party_packages
 from ddtrace.internal.packages import filename_to_package
 from ddtrace.internal.packages import is_third_party
 from ddtrace.internal.remoteconfig import Payload
-from ddtrace.internal.schema import SCHEMA_VERSION
 from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings._database_monitoring import dbm_config
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.settings.openfeature import config as ffe_config
+from ddtrace.internal.utils.constants import HIGHER_ORDER_TRACE_ID_BITS
+from ddtrace.internal.utils import core
 from ddtrace.internal.utils.formats import parse_tags_str
+from ddtrace.internal.utils.schema import SCHEMA_VERSION
 from ddtrace.internal.writer import AgentWriterInterface
 from ddtrace.internal.writer import NativeWriter
 from ddtrace.propagation._database_monitoring import listen as dbm_config_listen
@@ -330,7 +330,7 @@ def scoped_tracer(use_dummy_writer=True):
         ):
             delattr(ddtrace.tracer, "start_span")
         # Tracer uses a singleton pattern. We reinitialize the existing object (not create a new one)
-        # because ddtrace.tracer, ddtrace.trace.tracer, ddtrace.internal.core.tracer, etc. all reference
+        # because ddtrace.tracer, ddtrace.trace.tracer, ddtrace.internal.utils.core.tracer, etc. all reference
         # the same object. Reinitializing updates all references automatically.
         Tracer._instance = None
         Tracer.__init__(ddtrace.tracer)

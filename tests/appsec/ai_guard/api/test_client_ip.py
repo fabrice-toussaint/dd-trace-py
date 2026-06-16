@@ -19,7 +19,7 @@ from ddtrace.appsec.ai_guard import new_ai_guard_client
 from ddtrace.contrib.internal.trace_utils import set_http_meta
 from ddtrace.ext import SpanTypes
 from ddtrace.ext import http
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 from ddtrace.internal.settings._config import Config
 from ddtrace.internal.settings.integration import IntegrationConfig
 from ddtrace.trace import Span

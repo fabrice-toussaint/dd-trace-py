@@ -49,7 +49,7 @@ def test_core_event_handler_service_entrypoint_instruments_view():
     from unittest.mock import patch
 
     import ddtrace.debugging._products.code_origin.span  # noqa: F401 — registers the listener
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
 
     f = MagicMock()
     with patch("ddtrace.debugging._origin.span.SpanCodeOriginProcessorEntry") as mock_proc:
@@ -64,7 +64,7 @@ def test_core_event_handler_tracer_wrap_instruments_view():
     from unittest.mock import patch
 
     import ddtrace.debugging._products.code_origin.span  # noqa: F401 — registers the listener
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
 
     f = MagicMock()
     with patch("ddtrace.debugging._origin.span.SpanCodeOriginProcessorEntry") as mock_proc:

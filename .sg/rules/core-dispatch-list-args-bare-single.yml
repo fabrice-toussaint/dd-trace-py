@@ -6,10 +6,10 @@ fix: dispatch($EVENT, ($ARG,))
 rule:
   pattern: dispatch($EVENT, [$ARG])
 ignores:
-  - "ddtrace/internal/core/__init__.py"
-  - "ddtrace/internal/core/event_hub.py"
+  - "ddtrace/internal/utils/core/__init__.py"
+  - "ddtrace/internal/utils/core/event_hub.py"
 note: |
-  `dispatch()` (imported from `ddtrace.internal.core`) is typed as
+  `dispatch()` (imported from `ddtrace.internal.utils.core`) is typed as
   `args: tuple[Any, ...]`. Passing a list literal violates the type contract.
   Single-element tuples require a trailing comma.
 

@@ -19,15 +19,15 @@ from urllib.parse import urlparse
 import uuid
 
 from ddtrace.internal.settings import env
+from ddtrace.testing.internal.constants import DEFAULT_AGENT_HOSTNAME
+from ddtrace.testing.internal.constants import DEFAULT_AGENT_PORT
+from ddtrace.testing.internal.constants import DEFAULT_AGENT_SOCKET_FILE
+from ddtrace.testing.internal.constants import DEFAULT_ENV_NAME
+from ddtrace.testing.internal.constants import DEFAULT_SITE
 from ddtrace.testing.internal.errors import SetupError
 from ddtrace.testing.internal.telemetry import ErrorType
 from ddtrace.testing.internal.telemetry import TelemetryAPIRequestMetrics
 from ddtrace.testing.internal.utils import asbool
-from ddtrace.testing.internal.utils.constants import DEFAULT_AGENT_HOSTNAME
-from ddtrace.testing.internal.utils.constants import DEFAULT_AGENT_PORT
-from ddtrace.testing.internal.utils.constants import DEFAULT_AGENT_SOCKET_FILE
-from ddtrace.testing.internal.utils.constants import DEFAULT_ENV_NAME
-from ddtrace.testing.internal.utils.constants import DEFAULT_SITE
 
 
 log = logging.getLogger(__name__)

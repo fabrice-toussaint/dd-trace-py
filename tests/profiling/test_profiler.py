@@ -7,7 +7,7 @@ from unittest import mock
 import pytest
 
 import ddtrace
-from ddtrace.internal.compat import PYTHON_VERSION_INFO
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.profiling import collector
 from ddtrace.profiling import profiler
 from ddtrace.profiling import scheduler

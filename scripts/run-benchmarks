@@ -214,7 +214,7 @@ Examples:
   scripts/run-benchmarks --list
 
   # Show benchmarks relevant to specific files
-  scripts/run-benchmarks --list ddtrace/_trace/span.py ddtrace/internal/core/__init__.py
+  scripts/run-benchmarks --list ddtrace/_trace/span.py ddtrace/internal/utils/core/__init__.py
 
   # Show all available benchmark suites
   scripts/run-benchmarks --list --all-suites

@@ -5,10 +5,10 @@ from typing import Any
 
 import pytest
 
-from ddtrace.internal import core
-from ddtrace.internal.core import event_hub
-from ddtrace.internal.core.events import Event
-from ddtrace.internal.core.events import event_field
+from ddtrace.internal.utils import core
+from ddtrace.internal.utils.core import event_hub
+from ddtrace.internal.utils.core.events import Event
+from ddtrace.internal.utils.core.events import event_field
 
 
 @pytest.fixture(autouse=True)

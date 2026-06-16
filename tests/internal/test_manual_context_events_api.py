@@ -3,7 +3,7 @@ from typing import Optional
 
 import pytest
 
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 
 @pytest.fixture(autouse=True)

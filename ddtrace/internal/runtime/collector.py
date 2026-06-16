@@ -1,7 +1,7 @@
 import importlib
 from typing import Optional  # noqa:F401
 
-from ..logger import get_logger
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

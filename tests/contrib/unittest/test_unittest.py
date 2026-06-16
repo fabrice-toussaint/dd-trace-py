@@ -26,7 +26,7 @@ from ddtrace.internal.ci_visibility._api_client import TestVisibilityAPISettings
 from ddtrace.internal.ci_visibility.constants import MODULE_ID
 from ddtrace.internal.ci_visibility.constants import SESSION_ID
 from ddtrace.internal.ci_visibility.constants import SUITE_ID
-from ddtrace.internal.constants import COMPONENT
+from ddtrace.internal.utils.constants import COMPONENT
 from tests.utils import TracerTestCase
 from tests.utils import override_env
 

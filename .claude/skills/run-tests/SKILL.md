@@ -62,7 +62,7 @@ Rather than running ALL available venvs (which could take hours), I'll select th
 
 #### For Core/Tracing Changes (Broad Impact)
 When you modify files like:
-- `ddtrace/internal/core/*`, `ddtrace/_trace/*`, `ddtrace/trace/*`
+- `ddtrace/internal/utils/core/*`, `ddtrace/_trace/*`, `ddtrace/trace/*`
 - `ddtrace/_monkey.py`, `ddtrace/settings/*`
 - `ddtrace/constants.py`
 

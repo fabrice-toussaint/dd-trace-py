@@ -20,6 +20,8 @@ from ddtrace.testing.internal.api_client import APIClient
 from ddtrace.testing.internal.cached_file_provider import CachedFileDataProvider
 from ddtrace.testing.internal.cached_file_provider import TestOptDataProvider
 from ddtrace.testing.internal.ci import CITag
+from ddtrace.testing.internal.constants import DEFAULT_SERVICE_NAME
+from ddtrace.testing.internal.constants import ITRSkippingLevel
 from ddtrace.testing.internal.env_tags import get_env_tags
 from ddtrace.testing.internal.git import Git
 from ddtrace.testing.internal.git import GitTag
@@ -43,8 +45,6 @@ from ddtrace.testing.internal.test_data import TestSuite
 from ddtrace.testing.internal.test_data import TestTag
 from ddtrace.testing.internal.tracer_api import Codeowners
 from ddtrace.testing.internal.utils import asbool
-from ddtrace.testing.internal.utils.constants import DEFAULT_SERVICE_NAME
-from ddtrace.testing.internal.utils.constants import ITRSkippingLevel
 from ddtrace.testing.internal.writer import PayloadFileCoverageWriter
 from ddtrace.testing.internal.writer import PayloadFileTestOptWriter
 from ddtrace.testing.internal.writer import TestCoverageWriter

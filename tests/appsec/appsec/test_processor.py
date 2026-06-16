@@ -18,7 +18,7 @@ from ddtrace.appsec._utils import get_triggers
 from ddtrace.constants import USER_KEEP
 from ddtrace.contrib.internal.trace_utils import set_http_meta
 from ddtrace.ext import SpanTypes
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 import tests.appsec.rules as rules
 from tests.appsec.utils import asm_context
 from tests.appsec.utils import get_waf_addresses

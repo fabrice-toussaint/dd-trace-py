@@ -1,6 +1,6 @@
 import bm
 
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 
 CUSTOM_EVENT_NAME = "CoreAPIScenario.event"

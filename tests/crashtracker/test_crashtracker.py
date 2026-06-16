@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 @pytest.mark.skipif(not sys.platform.startswith("linux"), reason="Linux only")
 @pytest.mark.subprocess()
 def test_crashtracker_available():
-    from ddtrace.internal.core import crashtracking
+    from ddtrace.internal.utils.core import crashtracking
 
     assert crashtracking.is_available
 
@@ -43,7 +43,7 @@ def test_crashtracker_config_bytes():
 
     import pytest
 
-    from ddtrace.internal.core import crashtracking
+    from ddtrace.internal.utils.core import crashtracking
     from ddtrace.internal.settings.crashtracker import config as crashtracker_config
     from tests.crashtracker.utils import read_files
 
@@ -83,7 +83,7 @@ def test_crashtracker_config_bytes():
 def test_crashtracker_started():
     import pytest
 
-    from ddtrace.internal.core import crashtracking
+    from ddtrace.internal.utils.core import crashtracking
     from tests.crashtracker.utils import CrashtrackerWrapper
 
     try:
@@ -106,7 +106,7 @@ def test_crashtracker_receiver_not_in_path():
 
     import pytest
 
-    from ddtrace.internal.core import crashtracking
+    from ddtrace.internal.utils.core import crashtracking
     from tests.crashtracker.utils import CrashtrackerWrapper
 
     try:

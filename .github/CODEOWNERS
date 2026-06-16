@@ -54,7 +54,7 @@ ddtrace/bootstrap/                  @DataDog/python-guild  @DataDog/apm-core-pyt
 ddtrace/commands/                   @DataDog/python-guild  @DataDog/apm-core-python
 ddtrace/internal/_file_queue.py     @DataDog/python-guild
 ddtrace/internal/_unpatched.py      @DataDog/python-guild
-ddtrace/internal/compat.py          @DataDog/python-guild  @DataDog/apm-core-python
+ddtrace/internal/utils/compat.py          @DataDog/python-guild  @DataDog/apm-core-python
 ddtrace/internal/endpoints.py       @DataDog/python-guild  @DataDog/asm-python
 ddtrace/internal/settings/_config.py          @DataDog/python-guild  @DataDog/apm-sdk-capabilities-python
 ddtrace/vendor/                     @DataDog/python-guild  @DataDog/apm-core-python
@@ -171,7 +171,7 @@ tests/profiling                              @DataDog/profiling-python
 .github/workflows/pytorch_gpu_tests.yml      @DataDog/profiling-python
 
 # Crashtracker
-ddtrace/internal/core/crashtracking.py       @DataDog/profiling-python @DataDog/apm-core-python
+ddtrace/internal/utils/core/crashtracking.py       @DataDog/profiling-python @DataDog/apm-core-python
 ddtrace/internal/settings/crashtracker.py   @DataDog/profiling-python @DataDog/apm-core-python
 ddtrace/commands/_dd_crashtracker_receiver.py @DataDog/profiling-python @DataDog/apm-core-python
 tests/crashtracker/                          @DataDog/profiling-python

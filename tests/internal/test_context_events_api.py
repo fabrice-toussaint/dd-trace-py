@@ -7,7 +7,7 @@ import mock
 import pytest
 
 from ddtrace import config
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 
 def with_config_raise_value(raise_value: bool):
@@ -323,7 +323,7 @@ class TestContextEventsApi(unittest.TestCase):
 
     @with_config_raise_value(raise_value=False)
     def test_core_dispatch_event_allow_raise_propagates(self):
-        from ddtrace.internal.core.event_hub import dispatch_event
+        from ddtrace.internal.utils.core.event_hub import dispatch_event
 
         class FakeEvent:
             event_name = "my.cool.event"

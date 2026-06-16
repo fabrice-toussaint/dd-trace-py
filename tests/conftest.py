@@ -37,13 +37,13 @@ import ddtrace
 os.environ.pop("_DD_PYTEST_XDIST_INFERRED_SERVICE", None)
 
 from ddtrace._trace.provider import _DD_CONTEXTVAR
-from ddtrace.internal.core import crashtracking
 from ddtrace.internal.remoteconfig.client import RemoteConfigClient
 from ddtrace.internal.remoteconfig.worker import RemoteConfigPoller
 from ddtrace.internal.remoteconfig.worker import remoteconfig_poller
 from ddtrace.internal.service import ServiceStatus
 from ddtrace.internal.service import ServiceStatusError
 from ddtrace.internal.telemetry import TelemetryWriter
+from ddtrace.internal.utils.core import crashtracking
 from ddtrace.internal.utils.formats import parse_tags_str  # noqa:F401
 from tests import utils
 from tests.utils import TracerSpanContainer

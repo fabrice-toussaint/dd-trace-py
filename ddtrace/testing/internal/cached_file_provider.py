@@ -14,13 +14,13 @@ import os
 from pathlib import Path
 import typing as t
 
+from ddtrace.testing.internal.constants import ITRSkippingLevel
 from ddtrace.testing.internal.settings_data import Settings
 from ddtrace.testing.internal.settings_data import TestProperties
 from ddtrace.testing.internal.telemetry import TelemetryAPI
 from ddtrace.testing.internal.test_data import ModuleRef
 from ddtrace.testing.internal.test_data import SuiteRef
 from ddtrace.testing.internal.test_data import TestRef
-from ddtrace.testing.internal.utils.constants import ITRSkippingLevel
 
 
 log = logging.getLogger(__name__)

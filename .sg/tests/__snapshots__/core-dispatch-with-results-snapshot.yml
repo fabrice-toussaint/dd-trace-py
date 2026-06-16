@@ -37,74 +37,74 @@ snapshots:
       start: 0
       end: 47
   ? |
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
     result = core.dispatch_with_results("my.event", (arg1, arg2))
   : labels:
     - source: core.dispatch_with_results("my.event", (arg1, arg2))
       style: primary
       start: 43
       end: 95
-  from ddtrace.internal.core import dispatch, dispatch_with_results:
+  from ddtrace.internal.utils.core import dispatch, dispatch_with_results:
     labels:
-    - source: from ddtrace.internal.core import dispatch, dispatch_with_results
+    - source: from ddtrace.internal.utils.core import dispatch, dispatch_with_results
       style: primary
       start: 0
       end: 65
-  from ddtrace.internal.core import dispatch, dispatch_with_results, on:
+  from ddtrace.internal.utils.core import dispatch, dispatch_with_results, on:
     labels:
-    - source: from ddtrace.internal.core import dispatch, dispatch_with_results, on
+    - source: from ddtrace.internal.utils.core import dispatch, dispatch_with_results, on
       style: primary
       start: 0
       end: 69
-  from ddtrace.internal.core import dispatch_with_results:
+  from ddtrace.internal.utils.core import dispatch_with_results:
     labels:
-    - source: from ddtrace.internal.core import dispatch_with_results
+    - source: from ddtrace.internal.utils.core import dispatch_with_results
       style: primary
       start: 0
       end: 55
   ? |
-    from ddtrace.internal.core import dispatch_with_results
+    from ddtrace.internal.utils.core import dispatch_with_results
     result = dispatch_with_results("my.event", (arg1,))
   : labels:
-    - source: from ddtrace.internal.core import dispatch_with_results
+    - source: from ddtrace.internal.utils.core import dispatch_with_results
       style: primary
       start: 0
       end: 55
-  from ddtrace.internal.core import dispatch_with_results as dwr:
+  from ddtrace.internal.utils.core import dispatch_with_results as dwr:
     labels:
-    - source: from ddtrace.internal.core import dispatch_with_results as dwr
+    - source: from ddtrace.internal.utils.core import dispatch_with_results as dwr
       style: primary
       start: 0
       end: 62
-  from ddtrace.internal.core import dispatch_with_results, on:
+  from ddtrace.internal.utils.core import dispatch_with_results, on:
     labels:
-    - source: from ddtrace.internal.core import dispatch_with_results, on
+    - source: from ddtrace.internal.utils.core import dispatch_with_results, on
       style: primary
       start: 0
       end: 59
-  from ddtrace.internal.core.event_hub import dispatch, dispatch_with_results:
+  from ddtrace.internal.utils.core.event_hub import dispatch, dispatch_with_results:
     labels:
-    - source: from ddtrace.internal.core.event_hub import dispatch, dispatch_with_results
+    - source: from ddtrace.internal.utils.core.event_hub import dispatch, dispatch_with_results
       style: primary
       start: 0
       end: 75
-  from ddtrace.internal.core.event_hub import dispatch_with_results:
+  from ddtrace.internal.utils.core.event_hub import dispatch_with_results:
     labels:
-    - source: from ddtrace.internal.core.event_hub import dispatch_with_results
+    - source: from ddtrace.internal.utils.core.event_hub import dispatch_with_results
       style: primary
       start: 0
       end: 65
   ? |
-    from ddtrace.internal.core.event_hub import dispatch_with_results
+    from ddtrace.internal.utils.core.event_hub import dispatch_with_results
     result = dispatch_with_results("my.event", ())
   : labels:
-    - source: from ddtrace.internal.core.event_hub import dispatch_with_results
+    - source: from ddtrace.internal.utils.core.event_hub import dispatch_with_results
       style: primary
       start: 0
       end: 65
-  from ddtrace.internal.core.event_hub import dispatch_with_results as dwr:
+  from ddtrace.internal.utils.core.event_hub import dispatch_with_results as dwr:
     labels:
-    - source: from ddtrace.internal.core.event_hub import dispatch_with_results as dwr
+    - source: from ddtrace.internal.utils.core.event_hub import dispatch_with_results as dwr
       style: primary
       start: 0
       end: 72

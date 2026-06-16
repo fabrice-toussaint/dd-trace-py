@@ -4,7 +4,7 @@ import typing as t
 import ddtrace
 from ddtrace.debugging._origin.span import SpanCodeOriginProcessorEntry
 from ddtrace.debugging._probe.model import ProbeEvalTiming
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 from tests.debugging.mocking import MockSignalUploader
 from tests.debugging.mocking import debugger
 from tests.debugging.utils import create_snapshot_function_probe

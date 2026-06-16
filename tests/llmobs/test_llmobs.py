@@ -745,7 +745,7 @@ def test_annotate_with_tool_definitions_invalid_version_type(llmobs, llmobs_back
 
 def test_tool_version_propagated_from_llm_span_to_tool_span(llmobs):
     """tool_definitions[*].version on the parent LLM span should land on the child tool span as meta.tool.version."""
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
     from ddtrace.internal.utils.formats import format_trace_id
     from ddtrace.llmobs._constants import DISPATCH_ON_LLM_TOOL_CHOICE
     from ddtrace.llmobs._constants import DISPATCH_ON_TOOL_CALL
@@ -784,7 +784,7 @@ def test_tool_version_propagated_from_llm_span_to_tool_span(llmobs):
 
 def test_tool_version_not_set_when_missing_in_tool_definitions(llmobs):
     """No tool.version is written to the tool span when the parent LLM span's tool_definitions has no version."""
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
     from ddtrace.internal.utils.formats import format_trace_id
     from ddtrace.llmobs._constants import DISPATCH_ON_LLM_TOOL_CHOICE
     from ddtrace.llmobs._constants import DISPATCH_ON_TOOL_CALL

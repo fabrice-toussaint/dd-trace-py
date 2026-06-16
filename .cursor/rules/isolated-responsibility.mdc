@@ -43,7 +43,7 @@ breaking the modular boundary, and risking circular imports
 ## How to share data instead: core events
 
 When a security product needs data from (or needs to intercept) a shared
-integration, use the **core event bus** in `ddtrace/internal/core`.
+integration, use the **core event bus** in `ddtrace/internal/utils/core`.
 
 ### Producer — inside `ddtrace/contrib/internal/*`
 
@@ -52,7 +52,7 @@ listener must be able to stop the wrapped call (e.g. an AI Guard block
 decision):
 
 ```python
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 core.dispatch(f"{event}.before", (kwargs,), allow_raise=True)
 resp = func(*args, **kwargs)
@@ -68,7 +68,7 @@ Register listeners with `core.on(...)`. The canonical example is
 
 ```python
 from functools import partial
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 def ai_guard_listen():
     client = new_ai_guard_client()
@@ -93,7 +93,7 @@ are still dispatched but have no subscribers — a cheap no-op.
                       │  core.dispatch("<event>.before"/".after", ...)
                       ▼
         ┌─────────────────────────────────┐
-        │     ddtrace/internal/core        │   (event bus — decoupling layer)
+        │     ddtrace/internal/utils/core        │   (event bus — decoupling layer)
         └─────────────────────────────────┘
               ▲            ▲            ▲
    core.on(…) │ core.on(…) │ core.on(…) │

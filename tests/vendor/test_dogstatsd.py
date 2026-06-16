@@ -1,4 +1,4 @@
-from ddtrace.internal.logger import log_filter
+from ddtrace.internal.utils.logger import log_filter
 from ddtrace.vendor.dogstatsd.base import log
 
 

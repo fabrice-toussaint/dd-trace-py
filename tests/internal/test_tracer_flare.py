@@ -16,7 +16,7 @@ from ddtrace.internal.flare._subscribers import TracerFlareSubscriber
 from ddtrace.internal.flare._subscribers import _process_payloads
 from ddtrace.internal.flare.flare import TRACER_FLARE_FILE_HANDLER_NAME
 from ddtrace.internal.flare.flare import Flare
-from ddtrace.internal.logger import get_logger
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.native._native import native_flare  # type: ignore
 from ddtrace.internal.remoteconfig._connectors import PublisherSubscriberConnector
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter

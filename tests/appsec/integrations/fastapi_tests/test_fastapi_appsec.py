@@ -4,7 +4,7 @@ from fastapi.responses import PlainTextResponse
 import pytest
 
 from ddtrace.appsec._contrib.fastapi import _on_asgi_request_parse_body
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 import tests.appsec.rules as rules
 from tests.utils import override_global_config
 
