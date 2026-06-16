@@ -777,8 +777,8 @@ def test_cache_get():
 def test_cache_service_schematization():
     import django
 
-    from ddtrace.internal.utils.schema import schematize_service_name
     from ddtrace.internal.settings._config import config
+    from ddtrace.internal.utils.schema import schematize_service_name
     from tests.contrib.django.utils import setup_django_test_spans
 
     setup = setup_django_test_spans()

@@ -7,9 +7,9 @@ from warnings import warn
 import mock
 import pytest
 
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.internal.utils.module import ModuleWatchdog
 from ddtrace.internal.utils.module import origin
-from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 import tests.test_module
 from tests.utils import DDTRACE_PATH
 from tests.utils import _build_env
