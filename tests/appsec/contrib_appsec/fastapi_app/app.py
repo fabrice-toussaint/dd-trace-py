@@ -421,7 +421,7 @@ def get_app():
             return HTMLResponse("ok", status_code=200)
 
         from ddtrace.appsec._utils import Block_config
-        from ddtrace.internal._exceptions import BlockingException
+        from ddtrace.internal.utils._exceptions import BlockingException
 
         raise BaseExceptionGroup("test", [BlockingException(Block_config())])  # noqa: F821
 

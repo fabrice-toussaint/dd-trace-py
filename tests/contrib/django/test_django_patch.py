@@ -60,7 +60,7 @@ class TestDjangoPatch(PatchTestCase.Base):
 def test_instrument_templates_patching():
     import django.template.base
 
-    from ddtrace.internal.wrapping import is_wrapped
+    from ddtrace.internal.utils.wrapping import is_wrapped
 
     assert is_wrapped(django.template.base.Template.render)
 
@@ -69,6 +69,6 @@ def test_instrument_templates_patching():
 def test_tracing_minimal_patching():
     import django.template.base
 
-    from ddtrace.internal.wrapping import is_wrapped
+    from ddtrace.internal.utils.wrapping import is_wrapped
 
     assert is_wrapped(django.template.base.Template.render)

@@ -632,7 +632,7 @@ def test_debugger_function_and_line_probse_on_lazy_wrapped_function(stuff):
     """Test that we can correctly instrument view functions with line and function
     probes.
     """
-    from ddtrace.internal.wrapping.context import LazyWrappingContext
+    from ddtrace.internal.utils.wrapping.context import LazyWrappingContext
 
     class CounterWC(LazyWrappingContext):
         def __init__(self, *args, **kwargs):
@@ -684,7 +684,7 @@ def test_debugger_function_and_line_probse_on_lazy_wrapped_function(stuff):
 
 
 def test_debugger_function_probe_on_lazy_wrapped_function(stuff):
-    from ddtrace.internal.wrapping.context import LazyWrappingContext
+    from ddtrace.internal.utils.wrapping.context import LazyWrappingContext
 
     class LWC(LazyWrappingContext):
         entered = False

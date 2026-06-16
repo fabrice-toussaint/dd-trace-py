@@ -125,7 +125,7 @@ import {package}
         ("ddtrace.debugging._exception.replay", "SpanExceptionHandler"),
         ("ddtrace.debugging._uploader", "SignalUploader"),
         ("ddtrace.internal", "core"),
-        ("ddtrace.internal._exceptions", "BlockingException"),
+        ("ddtrace.internal.utils._exceptions", "BlockingException"),
         ("ddtrace.internal.appsec.product", "start"),
         ("ddtrace.internal.telemetry", "telemetry_writer"),
         ("ddtrace.internal.utils", "get_blocked"),

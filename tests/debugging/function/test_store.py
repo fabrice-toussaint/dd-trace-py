@@ -6,7 +6,7 @@ from ddtrace.debugging._function.discovery import undecorated
 from ddtrace.debugging._function.store import FunctionStore
 from ddtrace.internal.utils.inspection import linenos
 from ddtrace.internal.utils.module import origin
-from ddtrace.internal.wrapping.context import WrappingContext
+from ddtrace.internal.utils.wrapping.context import WrappingContext
 import tests.submod.stuff as stuff
 
 

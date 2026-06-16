@@ -29,7 +29,7 @@ from ddtrace.contrib.internal.django.response import traced_get_response
 from ddtrace.contrib.internal.django.utils import get_request_uri
 from ddtrace.ext import http
 from ddtrace.ext import user
-from ddtrace.internal import wrapping
+from ddtrace.internal.utils import wrapping
 from ddtrace.internal.utils.compat import ensure_text
 from ddtrace.propagation._utils import get_wsgi_header
 from ddtrace.propagation.http import HTTP_HEADER_PARENT_ID
@@ -2667,7 +2667,7 @@ class TestWSGI:
 
 @pytest.mark.subprocess(env={"DD_DJANGO_INSTRUMENT_DATABASES": "true"})
 def test_connections_patched():
-    from ddtrace.internal import wrapping
+    from ddtrace.internal.utils import wrapping
     from tests.contrib.django.utils import setup_django_test_spans
 
     setup = setup_django_test_spans()
@@ -2886,7 +2886,7 @@ def test_wrap_middleware_class_async_hooks():
 
     from ddtrace.contrib.internal import trace_utils as contrib_trace_utils
     from ddtrace.contrib.internal.django.middleware import wrap_middleware_class
-    from ddtrace.internal.wrapping import is_wrapped
+    from ddtrace.internal.utils.wrapping import is_wrapped
     from tests.contrib.django.middleware import AsyncCallMiddleware
 
     async_hooks = ("__call__", "process_view", "process_request", "process_exception")

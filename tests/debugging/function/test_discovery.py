@@ -169,7 +169,7 @@ def test_discovery_after_external_wrapping_context():
     from ddtrace.debugging._debugger import DebuggerModuleWatchdog
     from ddtrace.debugging._function.discovery import FunctionDiscovery
     from ddtrace.internal.utils.module import origin
-    from ddtrace.internal.wrapping.context import WrappingContext
+    from ddtrace.internal.utils.wrapping.context import WrappingContext
 
     DebuggerModuleWatchdog.install()
 

@@ -9,14 +9,14 @@ from typing import cast
 
 import pytest
 
-from ddtrace.internal.wrapping import is_wrapped
-from ddtrace.internal.wrapping import is_wrapped_with
-from ddtrace.internal.wrapping import unwrap
-from ddtrace.internal.wrapping import wrap
-from ddtrace.internal.wrapping.context import BaseWrappingContext
-from ddtrace.internal.wrapping.context import LazyWrappingContext
-from ddtrace.internal.wrapping.context import WrappingContext
-from ddtrace.internal.wrapping.context import _UniversalWrappingContext
+from ddtrace.internal.utils.wrapping import is_wrapped
+from ddtrace.internal.utils.wrapping import is_wrapped_with
+from ddtrace.internal.utils.wrapping import unwrap
+from ddtrace.internal.utils.wrapping import wrap
+from ddtrace.internal.utils.wrapping.context import BaseWrappingContext
+from ddtrace.internal.utils.wrapping.context import LazyWrappingContext
+from ddtrace.internal.utils.wrapping.context import WrappingContext
+from ddtrace.internal.utils.wrapping.context import _UniversalWrappingContext
 
 
 def assert_stack(expected):
@@ -980,8 +980,8 @@ async def test_wrapping_context_async_concurrent() -> None:
 def test_wrapping_context_method_leaks():
     import gc
 
-    from ddtrace.internal.wrapping.context import WrappingContext
-    from ddtrace.internal.wrapping.context import _UniversalWrappingContext
+    from ddtrace.internal.utils.wrapping.context import WrappingContext
+    from ddtrace.internal.utils.wrapping.context import _UniversalWrappingContext
 
     NOTSET = object()
 

@@ -3,7 +3,7 @@ import logging
 import pytest
 
 from ddtrace.appsec import _asm_request_context
-from ddtrace.internal._exceptions import BlockingException
+from ddtrace.internal.utils._exceptions import BlockingException
 from tests.appsec.utils import asm_context
 from tests.utils import override_global_config
 
