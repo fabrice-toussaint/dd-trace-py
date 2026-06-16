@@ -20,6 +20,7 @@ from ddtrace.internal.settings._config import config
 from ddtrace.internal.utils import compat
 from ddtrace.internal.utils.constants import DEFAULT_SERVICE_NAME
 from ddtrace.internal.utils.fnv import fnv1_64
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.internal.utils.retry import fibonacci_backoff_with_jitter
 from ddtrace.internal.utils.threads import Lock
 from ddtrace.version import __version__
@@ -27,7 +28,6 @@ from ddtrace.version import __version__
 from .._encoding import packb
 from ..agent import get_connection
 from ..hostname import get_hostname
-from ..logger import get_logger
 from ..periodic import PeriodicService
 from ..writer import _human_size
 from .encoding import decode_var_int_64

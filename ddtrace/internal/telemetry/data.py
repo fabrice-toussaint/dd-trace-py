@@ -7,10 +7,10 @@ from ddtrace.internal.runtime.container import get_container_info
 from ddtrace.internal.utils.cache import cached
 from ddtrace.internal.utils.cache import callonce
 from ddtrace.internal.utils.constants import DEFAULT_SERVICE_NAME
+from ddtrace.internal.utils.logger import get_logger
 from ddtrace.version import __version__
 
 from ..hostname import get_hostname
-from ..logger import get_logger
 
 
 log = get_logger(__name__)
