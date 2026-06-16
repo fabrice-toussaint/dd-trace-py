@@ -39,8 +39,8 @@ from ddtrace.internal.settings._agent import config as agent_config
 from ddtrace.internal.settings._database_monitoring import dbm_config
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.settings.openfeature import config as ffe_config
-from ddtrace.internal.utils.constants import HIGHER_ORDER_TRACE_ID_BITS
 from ddtrace.internal.utils import core
+from ddtrace.internal.utils.constants import HIGHER_ORDER_TRACE_ID_BITS
 from ddtrace.internal.utils.formats import parse_tags_str
 from ddtrace.internal.utils.schema import SCHEMA_VERSION
 from ddtrace.internal.writer import AgentWriterInterface

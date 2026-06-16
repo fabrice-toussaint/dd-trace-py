@@ -6,9 +6,9 @@ from ddtrace.constants import ERROR_STACK
 from ddtrace.constants import ERROR_TYPE
 from ddtrace.contrib.internal.vertica.patch import patch
 from ddtrace.contrib.internal.vertica.patch import unpatch
-from ddtrace.internal.utils.compat import is_wrapted
 from ddtrace.internal.schema import DEFAULT_SPAN_SERVICE_NAME
 from ddtrace.internal.settings._config import _deepmerge
+from ddtrace.internal.utils.compat import is_wrapted
 from tests.contrib.config import VERTICA_CONFIG
 from tests.utils import TracerSpanContainer
 from tests.utils import TracerTestCase

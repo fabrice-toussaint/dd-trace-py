@@ -40,9 +40,9 @@ from ddtrace.constants import ERROR_TYPE
 from ddtrace.contrib.internal.botocore.patch import patch
 from ddtrace.contrib.internal.botocore.patch import patch_submodules
 from ddtrace.contrib.internal.botocore.patch import unpatch
-from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.internal.datastreams.processor import PROPAGATION_KEY_BASE_64
 from ddtrace.internal.schema import DEFAULT_SPAN_SERVICE_NAME
+from ddtrace.internal.utils.compat import PYTHON_VERSION_INFO
 from ddtrace.internal.utils.version import parse_version
 from ddtrace.propagation.http import HTTP_HEADER_PARENT_ID
 from ddtrace.propagation.http import HTTP_HEADER_TRACE_ID

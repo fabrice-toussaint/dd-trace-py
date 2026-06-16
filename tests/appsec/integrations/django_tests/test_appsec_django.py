@@ -12,10 +12,10 @@ from ddtrace.appsec._constants import SPAN_DATA_NAMES
 from ddtrace.appsec._processor import AppSecSpanProcessor  # noqa: F401
 from ddtrace.ext import http
 from ddtrace.ext import user
-from ddtrace.internal.utils import constants
 from ddtrace.internal.settings.asm import config as asm_config
 from ddtrace.internal.telemetry.constants import TELEMETRY_EVENT_TYPE
 from ddtrace.internal.telemetry.constants import TELEMETRY_NAMESPACE
+from ddtrace.internal.utils import constants
 from tests.appsec.integrations.django_tests.utils import _aux_appsec_get_root_span
 import tests.appsec.rules as rules
 from tests.utils import override_global_config

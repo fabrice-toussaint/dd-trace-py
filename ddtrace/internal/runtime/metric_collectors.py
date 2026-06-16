@@ -1,5 +1,6 @@
 import os
 
+from .collector import ValueCollector
 from .constants import CPU_PERCENT
 from .constants import CPU_TIME_SYS
 from .constants import CPU_TIME_USER
@@ -10,8 +11,6 @@ from .constants import GC_COUNT_GEN1
 from .constants import GC_COUNT_GEN2
 from .constants import MEM_RSS
 from .constants import THREAD_COUNT
-
-from .collector import ValueCollector
 
 
 class RuntimeMetricCollector(ValueCollector):

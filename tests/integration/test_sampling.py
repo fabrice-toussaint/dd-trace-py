@@ -37,9 +37,9 @@ def test_supported_sampling_mechanism():
     """
     validate_sampling_decision should not give errors for supported sampling mechanisms
     """
+    from ddtrace.internal.sampling import validate_sampling_decision
     from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
     from ddtrace.internal.utils.constants import SamplingMechanism
-    from ddtrace.internal.sampling import validate_sampling_decision
 
     # This list can grow over time so we should test all of them
     supported_mechanisms = {
@@ -61,8 +61,8 @@ def test_unsupported_sampling_mechanism():
     """
     Unsupported sampling mechanisms actually return a decoding error in validate_sampling_decision
     """
-    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
     from ddtrace.internal.sampling import validate_sampling_decision
+    from ddtrace.internal.utils.constants import SAMPLING_DECISION_TRACE_TAG_KEY
 
     meta = {SAMPLING_DECISION_TRACE_TAG_KEY: "-999999999999"}
     sampling_decision_validation = validate_sampling_decision(meta)

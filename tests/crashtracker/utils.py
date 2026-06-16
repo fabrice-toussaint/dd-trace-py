@@ -17,8 +17,8 @@ def start_crashtracker(port: int, stdout: Optional[str] = None, stderr: Optional
     """Start the crashtracker with some placeholder values"""
     ret = False
     try:
-        from ddtrace.internal.utils.core import crashtracking
         from ddtrace.internal.settings.crashtracker import config as crashtracker_config
+        from ddtrace.internal.utils.core import crashtracking
 
         crashtracker_config.debug_url = "http://localhost:%d" % port
         crashtracker_config.stdout_filename = stdout
