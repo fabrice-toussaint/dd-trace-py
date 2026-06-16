@@ -33,7 +33,7 @@ ImportExceptionHookCond = t.Union[str, t.Callable[[str], bool]]
 log = get_logger(__name__)
 
 
-_run_code = None
+_run_code: t.Optional[t.Callable[[t.Any], t.Any]] = None
 _run_module_transformers: list[TransformerType] = []
 _post_run_module_hooks: list[ModuleHookType] = []
 
@@ -51,7 +51,7 @@ def _wrapped_run_code(*args: t.Any, **kwargs: t.Any) -> dict[str, t.Any]:
     new_args = (code, *args[1:])
 
     try:
-        return _run_code(*new_args, **kwargs)
+        return _run_code(*new_args, **kwargs)  # type: ignore[misc]
     finally:
         module = sys.modules[mod_name]
         for hook in _post_run_module_hooks:
