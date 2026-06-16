@@ -27,7 +27,7 @@ components:
     - ddtrace/internal/processor/__init__.py
     - ddtrace/internal/runtime/*
     - ddtrace/internal/sampling.py
-    - ddtrace/internal/schema/*
+    - ddtrace/internal/utils/schema/*
     - ddtrace/internal/sma.py
     - ddtrace/internal/tracemethods.py
     - ddtrace/internal/sysdep.h
@@ -52,7 +52,7 @@ components:
     - ddtrace/internal/settings/asm.py
   core:
     - ddtrace/internal/__init__.py
-    - ddtrace/internal/_exceptions.py
+    - ddtrace/internal/utils/_exceptions.py
     - ddtrace/internal/_threads.*
     - ddtrace/internal/_unpatched.py
     - ddtrace/internal/agent.py
@@ -73,7 +73,7 @@ components:
     - ddtrace/internal/http.py
     - ddtrace/internal/bytecode_injection/*
     - ddtrace/internal/metrics.py
-    - ddtrace/internal/module.py
+    - ddtrace/internal/utils/module.py
     - ddtrace/internal/native/*
     - ddtrace/internal/packages.py
     - ddtrace/internal/third-party.tar.gz
@@ -85,7 +85,7 @@ components:
     - ddtrace/internal/uds.py
     - ddtrace/internal/utils/*
     - ddtrace/internal/uwsgi.py
-    - ddtrace/internal/wrapping/*
+    - ddtrace/internal/utils/wrapping/*
     - ddtrace/__init__.py
     - ddtrace/py.typed
     - ddtrace/internal/settings/_config.py
