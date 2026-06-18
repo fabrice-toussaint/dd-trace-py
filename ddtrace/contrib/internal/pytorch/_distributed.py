@@ -15,10 +15,10 @@ from ddtrace.contrib.internal.pytorch._utils import resolve_job_id_from_env
 from ddtrace.contrib.internal.pytorch._utils import set_cached_job_id
 from ddtrace.contrib.internal.trace_utils import unwrap as _unwrap
 from ddtrace.contrib.internal.trace_utils import wrap as _wrap
+from ddtrace.internal import core
 from ddtrace.internal import forksafe
+from ddtrace.internal.logger import get_logger
 from ddtrace.internal.settings import env
-from ddtrace.internal.utils import core
-from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)
@@ -209,7 +209,7 @@ def _wrapped_init_process_group(wrapped: Any, instance: Any, args: Any, kwargs: 
     result = wrapped(*args, **kwargs)  # let exceptions propagate; do NOT open context yet
 
     if not already:
-        ctx = core.context_with_data("pytorch.rank", _dispatch_end_event=False)
+        ctx = core.context_with_data("pytorch.rank", _dispatch_end_event=False)  # type: ignore[no-untyped-call]
         # AIDEV-NOTE: __enter__() updates _CURRENT_CONTEXT so child spans are parented here; _dispatch_end_event=False
         # defers the ended event — dispatch_ended_event() + __exit__() are called in _wrapped_destroy_process_group.
         ctx.__enter__()
@@ -457,7 +457,7 @@ def install() -> None:
     if _distributed_available():
         try:
             if torch.distributed.is_initialized() and _rank_ctx.get() is None:
-                ctx = core.context_with_data("pytorch.rank", _dispatch_end_event=False)
+                ctx = core.context_with_data("pytorch.rank", _dispatch_end_event=False)  # type: ignore[no-untyped-call]
                 ctx.__enter__()
                 _rank_ctx.set(ctx)
                 _bootstrap_distributed()
