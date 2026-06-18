@@ -6,7 +6,6 @@ import weakref
 
 from ddtrace.internal import core
 from ddtrace.internal.logger import get_logger
-from ddtrace.internal.utils import get_argument_value
 from ddtrace.internal.utils.formats import format_trace_id
 from ddtrace.llmobs._constants import DISPATCH_ON_GUARDRAIL_SPAN_START
 from ddtrace.llmobs._constants import DISPATCH_ON_LLM_TOOL_CHOICE
@@ -288,8 +287,54 @@ class OpenAIAgentsIntegration(BaseLLMIntegration):
         self.oai_to_llmobs_span.clear()
         self.llmobs_traces.clear()
 
-    def tag_agent_manifest(self, span: Span, args: list[Any], kwargs: dict[str, Any], agent_index: int) -> None:
-        agent = get_argument_value(args, kwargs, agent_index, "agent", True)
+    # AIDEV-NOTE: MLOB-7584 — the per-turn function's call shape varies by agents version AND
+    # by instance-method vs module-level vs streamed variant. Verified against shipped wheels
+    # 0.0.x-0.17.x:
+    #   instance non-streamed:      AgentRunner._run_single_turn(self, agent=<Agent>, ...)
+    #   instance streamed:          AgentRunner._run_single_turn_streamed(self, <RunResultStreaming>, <Agent>, ...)
+    #   module non-streamed 0.8-0.13: run_single_turn(agent=<Agent>, ...)               # kwarg
+    #   module non-streamed >=0.14:   run_single_turn(bindings=<AgentBindings>, ...)     # kwarg
+    #   module streamed 0.8-0.13:     run_single_turn_streamed(<RunResultStreaming>, <Agent>, ...)
+    #   module streamed >=0.14:       run_single_turn_streamed(<RunResultStreaming>, <AgentBindings>, ...)
+    # The streamed variants pass the agent/bindings POSITIONALLY at index 1 (index 0 is the
+    # RunResultStreaming, which exposes only ``current_agent`` — not the binding attrs or a
+    # bare Agent's name/tools/handoffs, so the scan safely skips it). A single scanner across
+    # ``bindings``/``agent`` kwargs and positional args resolves the agent for every shape.
+    def _extract_agent_from_call(self, args: list[Any], kwargs: dict[str, Any]) -> Optional[Any]:
+        """Resolve the Agent from a run_single_turn[_streamed] call across versions and call shapes."""
+        candidates = []
+        for key in ("bindings", "agent"):
+            value = kwargs.get(key)
+            if value is not None:
+                candidates.append(value)
+        candidates.extend(arg for arg in args if arg is not None)
+        for candidate in candidates:
+            # AgentBindings shape (>= 0.14.0): the agent lives under one of these.
+            # AIDEV-NOTE: MLOB-7584 — for the agent manifest (the user's declared config:
+            # name/instructions/tools/handoffs/guardrails) prefer ``public_agent``;
+            # ``execution_agent`` may be a sandbox-rewritten clone, not what the user declared.
+            # AIDEV-NOTE: PR-B (context_delta) may instead want ``execution_agent`` for token
+            # accounting (the agent actually run) — a known tension to revisit there.
+            bound_agent = (
+                getattr(candidate, "public_agent", None)
+                or getattr(candidate, "execution_agent", None)
+                or getattr(candidate, "agent", None)
+            )
+            if bound_agent is not None:
+                return bound_agent
+            # Bare Agent shape (0.0.x-0.13.x). name + tools + handoffs distinguishes an Agent
+            # from RunResultStreaming (which has ``current_agent`` but none of these).
+            if hasattr(candidate, "name") and hasattr(candidate, "tools") and hasattr(candidate, "handoffs"):
+                return candidate
+        return None
+
+    def tag_agent_manifest(self, span: Span, args: list[Any], kwargs: dict[str, Any]) -> None:
+        agent = self._extract_agent_from_call(args, kwargs)
+        if agent is None:
+            return
+        self._tag_agent_manifest_from_agent(span, agent)
+
+    def _tag_agent_manifest_from_agent(self, span: Span, agent: Any) -> None:
         if not agent or not self.llmobs_enabled:
             return
 
@@ -329,7 +374,7 @@ class OpenAIAgentsIntegration(BaseLLMIntegration):
 
         # convert model_settings to dict if it's not already
         model_settings = agent.model_settings
-        if type(model_settings) != dict:
+        if not isinstance(model_settings, dict):
             model_settings = getattr(model_settings, "__dict__", None)
 
         return load_data_value(model_settings)

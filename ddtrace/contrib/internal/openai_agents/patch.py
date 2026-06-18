@@ -31,24 +31,84 @@ OPENAI_AGENTS_VERSION = parse_version(get_version())
 
 
 async def patched_run_single_turn(func, instance, args, kwargs):
-    return await _patched_run_single_turn(func, instance, args, kwargs, agent_index=0)
+    return await _patched_run_single_turn(func, instance, args, kwargs)
 
 
 async def patched_run_single_turn_streamed(func, instance, args, kwargs):
-    return await _patched_run_single_turn(func, instance, args, kwargs, agent_index=1)
+    return await _patched_run_single_turn(func, instance, args, kwargs)
 
 
-async def _patched_run_single_turn(func, instance, args, kwargs, agent_index=0):
+async def _patched_run_single_turn(func, instance, args, kwargs):
     current_span = tracer.current_span()
     result = await func(*args, **kwargs)
 
     if current_span is None:
         log.debug("No current span available, skipping tag_agent_manifest")
-    else:
+        return result
+
+    # AIDEV-NOTE: MLOB-7584 — best-effort; the SDK guards its tracing-processor callbacks
+    # but NOT this wrap site, so an unguarded raise here would surface in the user's Runner.run.
+    try:
         integration = agents._datadog_integration
-        integration.tag_agent_manifest(current_span, args, kwargs, agent_index)
+        integration.tag_agent_manifest(current_span, args, kwargs)
+    except Exception:
+        log.debug("openai_agents tag_agent_manifest failed", exc_info=True)
 
     return result
+
+
+async def patched_run_single_turn_module(func, instance, args, kwargs):
+    return await _patched_run_single_turn_module(func, instance, args, kwargs)
+
+
+async def patched_run_single_turn_streamed_module(func, instance, args, kwargs):
+    return await _patched_run_single_turn_module(func, instance, args, kwargs)
+
+
+async def _patched_run_single_turn_module(func, instance, args, kwargs):
+    current_span = tracer.current_span()
+    result = await func(*args, **kwargs)
+
+    if current_span is None:
+        log.debug("No current span available, skipping tag_agent_manifest")
+        return result
+
+    # AIDEV-NOTE: MLOB-7584 — best-effort; the SDK guards its tracing-processor callbacks
+    # but NOT this wrap site, so an unguarded raise here would surface in the user's Runner.run.
+    try:
+        integration = agents._datadog_integration
+        integration.tag_agent_manifest(current_span, args, kwargs)
+    except Exception:
+        log.debug("openai_agents tag_agent_manifest failed", exc_info=True)
+
+    return result
+
+
+def _has_module_level_run_loop() -> bool:
+    try:
+        from agents.run_internal import run_loop as _rl  # noqa: F401
+
+        return hasattr(_rl, "run_single_turn") or hasattr(_rl, "run_single_turn_streamed")
+    except ImportError:
+        return False
+
+
+# AIDEV-NOTE: MLOB-7584 — agents >= 0.8.0 moved the per-turn function from
+# ``AgentRunner._run_single_turn`` to module-level ``agents.run_internal.run_loop``.
+# Wrap ``agents.run.run_single_turn`` (the re-export at agents/run.py), not the definition
+# in ``agents.run_internal.run_loop``: run.py imports the symbol at module load, so wrapping
+# the definition module after-the-fact has no effect on the call sites. The streamed variant
+# is called from within run_loop itself and is wrapped there directly.
+_MODULE_RUN_LOOP_WRAP_TARGETS: list[tuple[str, str, str]] = [
+    ("agents.run", "run_single_turn", "patched_run_single_turn_module"),
+    ("agents.run_internal.run_loop", "run_single_turn_streamed", "patched_run_single_turn_streamed_module"),
+]
+
+
+def _resolve_module(path: str):
+    import importlib
+
+    return importlib.import_module(path)
 
 
 def patch():
@@ -64,14 +124,28 @@ def patch():
     add_trace_processor(LLMObsTraceProcessor(integration))
     agents._datadog_integration = integration
 
-    if OPENAI_AGENTS_VERSION >= (0, 0, 19):
+    if _has_module_level_run_loop():
+        _wrappers_by_name = {
+            "patched_run_single_turn_module": patched_run_single_turn_module,
+            "patched_run_single_turn_streamed_module": patched_run_single_turn_streamed_module,
+        }
+        for module_path, attr_name, wrapper_name in _MODULE_RUN_LOOP_WRAP_TARGETS:
+            try:
+                mod = _resolve_module(module_path)
+            except ImportError:
+                continue
+            if hasattr(mod, attr_name):
+                wrap(mod, attr_name, _wrappers_by_name[wrapper_name])
+    elif OPENAI_AGENTS_VERSION >= (0, 0, 19):
         if hasattr(agents.run.AgentRunner, "_run_single_turn"):
             wrap(agents.run.AgentRunner, "_run_single_turn", patched_run_single_turn)
         if hasattr(agents.run.AgentRunner, "_run_single_turn_streamed"):
             wrap(agents.run.AgentRunner, "_run_single_turn_streamed", patched_run_single_turn_streamed)
     else:
-        wrap(agents.run.Runner, "_run_single_turn", patched_run_single_turn)
-        wrap(agents.run.Runner, "_run_single_turn_streamed", patched_run_single_turn_streamed)
+        if hasattr(agents.run.Runner, "_run_single_turn"):
+            wrap(agents.run.Runner, "_run_single_turn", patched_run_single_turn)
+        if hasattr(agents.run.Runner, "_run_single_turn_streamed"):
+            wrap(agents.run.Runner, "_run_single_turn_streamed", patched_run_single_turn_streamed)
 
 
 def unpatch():
@@ -83,11 +157,21 @@ def unpatch():
 
     agents._datadog_patch = False
 
-    if OPENAI_AGENTS_VERSION >= (0, 0, 19):
+    if _has_module_level_run_loop():
+        for module_path, attr_name, _ in _MODULE_RUN_LOOP_WRAP_TARGETS:
+            try:
+                mod = _resolve_module(module_path)
+            except ImportError:
+                continue
+            if hasattr(mod, attr_name):
+                unwrap(mod, attr_name)
+    elif OPENAI_AGENTS_VERSION >= (0, 0, 19):
         if hasattr(agents.run.AgentRunner, "_run_single_turn"):
             unwrap(agents.run.AgentRunner, "_run_single_turn")
         if hasattr(agents.run.AgentRunner, "_run_single_turn_streamed"):
             unwrap(agents.run.AgentRunner, "_run_single_turn_streamed")
     else:
-        unwrap(agents.run.Runner, "_run_single_turn")
-        unwrap(agents.run.Runner, "_run_single_turn_streamed")
+        if hasattr(agents.run.Runner, "_run_single_turn"):
+            unwrap(agents.run.Runner, "_run_single_turn")
+        if hasattr(agents.run.Runner, "_run_single_turn_streamed"):
+            unwrap(agents.run.Runner, "_run_single_turn_streamed")
