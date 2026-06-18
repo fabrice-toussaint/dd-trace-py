@@ -5,9 +5,9 @@ from ddtrace.contrib.internal.celery.app import patch_app
 from ddtrace.contrib.internal.celery.app import unpatch_app
 from ddtrace.contrib.internal.celery.constants import PRODUCER_SERVICE
 from ddtrace.contrib.internal.celery.constants import WORKER_SERVICE
-from ddtrace.internal.schema import schematize_service_name
 from ddtrace.internal.settings import env
 from ddtrace.internal.utils.formats import asbool
+from ddtrace.internal.utils.schema import schematize_service_name
 
 
 # Celery default settings
