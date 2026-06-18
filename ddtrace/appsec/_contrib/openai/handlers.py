@@ -2,8 +2,8 @@ from typing import Any
 
 from ddtrace.appsec._asm_request_context import call_waf_callback
 from ddtrace.appsec._asm_request_context import in_asm_context
-from ddtrace.internal.utils import core
 from ddtrace.internal.logger import get_logger
+from ddtrace.internal.utils import core
 
 
 logger = get_logger(__name__)
