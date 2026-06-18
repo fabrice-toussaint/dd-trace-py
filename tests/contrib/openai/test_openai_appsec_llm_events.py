@@ -19,7 +19,7 @@ from unittest.mock import patch
 import httpx
 import pytest
 
-from ddtrace.internal import core
+from ddtrace.internal.utils import core
 
 
 # ---------------------------------------------------------------------------

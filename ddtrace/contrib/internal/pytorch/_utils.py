@@ -5,8 +5,8 @@ from typing import Any
 from typing import Optional
 import uuid
 
-from ddtrace.internal.logger import get_logger
 from ddtrace.internal.settings import env
+from ddtrace.internal.utils.logger import get_logger
 
 
 log = get_logger(__name__)

@@ -39,7 +39,7 @@ def test_fork_resets_rank_root_and_bootstrap_state():
         _device.discover(local_rank=0)
     # Open a rank span and mark distributed as bootstrapped in the parent.
     _rank_root.open_rank_span(rank=0, world_size=1, framework="none", training_job_id="job-X")
-    from ddtrace.internal import core
+    from ddtrace.internal.utils import core
 
     fake_ctx = core.context_with_data("pytorch.rank", _dispatch_end_event=False)
     fake_ctx.__enter__()
