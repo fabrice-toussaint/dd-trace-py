@@ -94,9 +94,15 @@ go tool pprof -top offcpu.pb.gz          # text summary
 go tool pprof -traces offcpu.pb.gz       # per-sample stacks
 ```
 
-A quick end-to-end target is `scripts/demo_offcpu_approximation.py`, which spawns threads
-that block on sleep / locks / I/O — useful for eyeballing the off-CPU output and comparing
-against the existing approximation (spike milestone 6).
+A quick end-to-end target is `scripts/demo_offcpu_approximation.py` (repo root), which spawns
+threads that block on sleep / locks / I/O plus CPU-bound threads. Run it with `--compare` to
+attach `dd_offcpu` automatically and print a side-by-side table of the kernel-measured off-CPU
+time vs the in-process `wall − cpu` approximation (spike milestone 6):
+
+```bash
+# from the dd-trace-py repo root, after building + setcap'ing dd_offcpu:
+python3 scripts/demo_offcpu_approximation.py --compare --duration 6
+```
 
 ### PID namespaces / containers
 

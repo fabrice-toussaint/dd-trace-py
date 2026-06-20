@@ -185,8 +185,8 @@ Reference: FHP's `interpreter/python/python.go` and py-spy's `src/python_spy.rs`
 | 3 | Native function names in output | ✅ done |
 | 4 | `time.sleep`, `lock.acquire` visible as Python frames | ✅ done |
 | 5 | `go tool pprof -http :8080 offcpu.pb.gz` shows off-CPU flame graph | ✅ done |
-| 6 | Side-by-side comparison with `demo_offcpu_approximation.py` output | ⬜ next |
-| 7 | Tests: symbolizer unit tests + gated end-to-end smoke test [^tests] | ⬜ |
+| 6 | Side-by-side comparison with `demo_offcpu_approximation.py` output | ✅ done |
+| 7 | Tests: symbolizer unit tests + gated end-to-end smoke test [^tests] | ⬜ next |
 
 **Milestone 1–2 notes:** libbpf is vendored and statically linked (`v1.5.1`)
 because distro libbpf (Ubuntu 22.04 ships 0.5.0) predates `BTF_KIND_ENUM64` and
@@ -266,6 +266,37 @@ is cosmetic for a flame graph but limits `go tool pprof list`); (2) a production
 build emits through **libdatadog**'s profile exporter instead, for upload, auth,
 and standardized labels (and to merge with the in-process profiler — see the
 sidecar architecture above).
+
+**Milestone 6 notes:** `scripts/demo_offcpu_approximation.py` runs a controlled,
+fixed-duration workload (sleeper, lock holder/waiter, blocking-I/O feeder/reader,
+CPU spinner, CPU fibber) where each thread self-measures wall vs CPU time, so it
+reports the in-process **`wall − cpu` approximation** (PR #18623) directly — no
+profiler or extra branch needed. `--compare` additionally attaches `dd_offcpu` to
+the demo's own pid for the same window, aggregates kernel-measured off-CPU per
+thread, and prints a side-by-side table keyed by `threading.get_native_id()`
+(which equals the namespace-local tid the sidecar emits). A representative 6 s run:
+
+```
+thread        cause    wall(s)   cpu(s)  approx(s)   eBPF(s)     Δ(s)
+sleeper       sleep       6.08     0.02       6.06      6.01    -0.05
+lock_holder   sleep       6.10     0.03       6.07      6.02    -0.05
+lock_waiter   lock        6.09     0.77       5.33      5.28    -0.05
+io_feeder     sleep       6.08     0.03       6.06      6.02    -0.03
+io_reader     io          6.08     0.01       6.07      6.05    -0.02
+cpu_spinner   -           6.08     2.47       3.61      3.51    -0.10
+cpu_fibber    -           6.11     2.58       3.54      3.45    -0.09
+```
+
+eBPF agrees with the approximation to within ~0.02–0.10 s per thread, always
+slightly lower — expected, since the sidecar drops sub-`min-block-us` intervals
+and the partial intervals straddling attach/detach. Two observations worth
+recording: (1) the "CPU-bound" spinner/fibber show ~3.5 s of off-CPU under
+*both* methods because they block on the **GIL futex** (only one runs Python
+bytecode at a time) — the sidecar correctly attributes this to a `futex` leaf;
+(2) the main thread (and a couple of runtime threads) sit ~fully off-CPU and are
+reported as unmatched tids in the table footer rather than tied to a named
+worker. This confirms the kernel-exact path tracks the cheap approximation while
+adding the per-stack attribution the approximation cannot give.
 
 [^tests]: Testing strategy for this spike — deliberately deferred to the last
     milestone rather than one suite per feature, because most milestones are not
