@@ -71,19 +71,31 @@ class AWSPayloadTagging:
         self.validated = False
         # AIDEV-NOTE: These hold *precompiled* jsonpath_ng expressions, not path
         # strings. jsonpath_ng.parse() is expensive (grammar compilation), so we
-        # compile once (gated by ``validated``) and reuse the expressions on every
-        # AWS call. Re-parsing per call previously dominated S3 latency
-        # (dd-trace-py#16850). Recompiled whenever ``validated`` is reset.
+        # cache them and recompile only when the config values change. Re-parsing
+        # per call previously dominated S3 latency (dd-trace-py#16850).
+        # DD_TRACE_CLOUD_REQUEST/RESPONSE_PAYLOAD_TAGGING are remote-config
+        # controlled, so we track the setting values used at compile time and
+        # recompile whenever they differ from the current config.
         self.request_redaction_paths = None
         self.response_redaction_paths = None
+        self._compiled_request_setting = None
+        self._compiled_response_setting = None
 
     def expand_payload_as_tags(self, span: Span, result: dict[str, Any], key: str) -> None:
         """
         Expands the JSON payload from various AWS services into tags and sets them on the Span.
         """
-        if not self.validated:
+        current_request = config.botocore.get("payload_tagging_request")
+        current_response = config.botocore.get("payload_tagging_response")
+        if (
+            not self.validated
+            or self._compiled_request_setting != current_request
+            or self._compiled_response_setting != current_response
+        ):
             self.request_redaction_paths = self._get_redaction_paths_request()
             self.response_redaction_paths = self._get_redaction_paths_response()
+            self._compiled_request_setting = current_request
+            self._compiled_response_setting = current_response
             self.validated = True
 
         if not self.request_redaction_paths and not self.response_redaction_paths:
@@ -147,9 +159,8 @@ class AWSPayloadTagging:
 
     def _get_redaction_paths_response(self) -> list:
         """
-        Get the precompiled redaction JSONPath expressions, combining defaults with
-        any user-provided JSONPaths. Compiled once (gated by ``validated``) so the
-        expensive ``jsonpath_ng.parse`` is not re-run on every AWS call.
+        Get compiled redaction JSONPath expressions for the response, combining
+        defaults with any user-provided JSONPaths.
         """
         if not config.botocore.get("payload_tagging_response"):
             return []
@@ -170,9 +181,8 @@ class AWSPayloadTagging:
 
     def _get_redaction_paths_request(self) -> list:
         """
-        Get the precompiled redaction JSONPath expressions, combining defaults with
-        any user-provided JSONPaths. Compiled once (gated by ``validated``) so the
-        expensive ``jsonpath_ng.parse`` is not re-run on every AWS call.
+        Get compiled redaction JSONPath expressions for the request, combining
+        defaults with any user-provided JSONPaths.
         """
         if not config.botocore.get("payload_tagging_request"):
             return []
