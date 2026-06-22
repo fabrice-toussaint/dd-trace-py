@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim@sha256:4724b8cc51e33e398f0e2e15e18d5ec2851ff0c2280647e1310bc1642182655d AS base
+FROM debian:bookworm-slim@sha256:96e378d7e6531ac9a15ad505478fcc2e69f371b10f5cdf87857c4b8188404716 AS base
 
 # Keep this version in sync with the one we actually use in benchmarking-platform
 # https://github.com/DataDog/benchmarking-platform/blob/32681a9f805f4d62cf6bd7d205ddeb83ab72288d/container/install-base-deps.sh#L21
@@ -15,7 +15,7 @@ ENV PATH "$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 RUN git clone --depth 1 https://github.com/pyenv/pyenv.git --branch "v$PYENV_VERSION" --single-branch "$PYENV_ROOT"
 RUN pyenv install "$PYTHON_VERSION"
 
-FROM debian:bookworm-slim@sha256:4724b8cc51e33e398f0e2e15e18d5ec2851ff0c2280647e1310bc1642182655d
+FROM debian:bookworm-slim@sha256:96e378d7e6531ac9a15ad505478fcc2e69f371b10f5cdf87857c4b8188404716
 # Keep this version in sync with
 # https://github.com/DataDog/benchmarking-platform/blob/32681a9f805f4d62cf6bd7d205ddeb83ab72288d/container/install-base-deps.sh#L21
 ARG PYTHON_VERSION=3.9.15
