@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    botocore: resolve a latency regression where enabling AWS payload tagging
+    (``DD_TRACE_CLOUD_REQUEST_PAYLOAD_TAGGING`` /
+    ``DD_TRACE_CLOUD_RESPONSE_PAYLOAD_TAGGING``) added hundreds of milliseconds to
+    every instrumented AWS call (for example S3 operations). The redaction
+    JSONPath expressions are now compiled once and reused instead of being
+    re-parsed on every request, which was the dominant cost.

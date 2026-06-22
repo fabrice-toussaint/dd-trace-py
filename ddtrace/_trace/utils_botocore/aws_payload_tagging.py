@@ -69,6 +69,11 @@ class AWSPayloadTagging:
     def __init__(self):
         self.current_tag_count = 0
         self.validated = False
+        # AIDEV-NOTE: These hold *precompiled* jsonpath_ng expressions, not path
+        # strings. jsonpath_ng.parse() is expensive (grammar compilation), so we
+        # compile once (gated by ``validated``) and reuse the expressions on every
+        # AWS call. Re-parsing per call previously dominated S3 latency
+        # (dd-trace-py#16850). Recompiled whenever ``validated`` is reset.
         self.request_redaction_paths = None
         self.response_redaction_paths = None
 
@@ -132,18 +137,19 @@ class AWSPayloadTagging:
 
         return True
 
-    def _redact_json(self, data: dict[str, Any], span: Span, paths: list) -> None:
+    def _redact_json(self, data: dict[str, Any], span: Span, expressions: list) -> None:
         """
-        Redact sensitive data in the JSON payload based on default and user-provided JSONPath expressions
+        Redact sensitive data in the JSON payload using precompiled JSONPath expressions.
         """
-        for path in paths:
-            expression = parse(path)
+        for expression in expressions:
             for match in expression.find(data):
                 match.context.value[match.path.fields[0]] = "redacted"
 
     def _get_redaction_paths_response(self) -> list:
         """
-        Get the list of redaction paths, combining defaults with any user-provided JSONPaths.
+        Get the precompiled redaction JSONPath expressions, combining defaults with
+        any user-provided JSONPaths. Compiled once (gated by ``validated``) so the
+        expensive ``jsonpath_ng.parse`` is not re-run on every AWS call.
         """
         if not config.botocore.get("payload_tagging_response"):
             return []
@@ -151,16 +157,22 @@ class AWSPayloadTagging:
         response_redaction = config.botocore.get("payload_tagging_response")
         if self._validate_json_paths(response_redaction):
             if response_redaction == "all":
-                return self._RESPONSE_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS
-            return (
-                self._RESPONSE_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS + response_redaction.split(",")
-            )
+                paths = self._RESPONSE_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS
+            else:
+                paths = (
+                    self._RESPONSE_REDACTION_PATHS_DEFAULTS
+                    + self._REDACTION_PATHS_DEFAULTS
+                    + response_redaction.split(",")
+                )
+            return [parse(path) for path in paths]
 
         return []
 
     def _get_redaction_paths_request(self) -> list:
         """
-        Get the list of redaction paths, combining defaults with any user-provided JSONPaths.
+        Get the precompiled redaction JSONPath expressions, combining defaults with
+        any user-provided JSONPaths. Compiled once (gated by ``validated``) so the
+        expensive ``jsonpath_ng.parse`` is not re-run on every AWS call.
         """
         if not config.botocore.get("payload_tagging_request"):
             return []
@@ -168,10 +180,14 @@ class AWSPayloadTagging:
         request_redaction = config.botocore.get("payload_tagging_request")
         if self._validate_json_paths(request_redaction):
             if request_redaction == "all":
-                return self._REQUEST_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS
-            return (
-                self._REQUEST_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS + request_redaction.split(",")
-            )
+                paths = self._REQUEST_REDACTION_PATHS_DEFAULTS + self._REDACTION_PATHS_DEFAULTS
+            else:
+                paths = (
+                    self._REQUEST_REDACTION_PATHS_DEFAULTS
+                    + self._REDACTION_PATHS_DEFAULTS
+                    + request_redaction.split(",")
+                )
+            return [parse(path) for path in paths]
 
         return []
 
