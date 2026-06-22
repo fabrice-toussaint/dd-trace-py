@@ -230,7 +230,7 @@ def print_table(workers: list[Worker], ebpf_by_tid: dict[int, float] | None, dur
 # ------------------------------------------------------------------------- main
 
 
-def run(duration: float, compare: bool, offcpu_bin: str, min_block_us: int) -> int:
+def run(duration: float, compare: bool, offcpu_bin: str, min_block_us: int, offcpu_output: str) -> int:
     workers = build_workers()
     stop = threading.Event()
 
@@ -242,8 +242,14 @@ def run(duration: float, compare: bool, offcpu_bin: str, min_block_us: int) -> i
             print(f"error: dd_offcpu not found at {offcpu_bin}; build it first", file=sys.stderr)
             return 2
         # Attach the sidecar to ourselves before the workers start blocking.
+        # --output makes the eBPF off-CPU pprof land at a known path we can print.
         proc = subprocess.Popen(
-            [offcpu_bin, "--pid", str(os.getpid()), "--min-block-us", str(min_block_us)],
+            [
+                offcpu_bin,
+                "--pid", str(os.getpid()),
+                "--min-block-us", str(min_block_us),
+                "--output", offcpu_output,
+            ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
@@ -290,6 +296,23 @@ def run(duration: float, compare: bool, offcpu_bin: str, min_block_us: int) -> i
         ebpf_by_tid = aggregate_offcpu_by_tid(stdout_lines)
 
     print_table(workers, ebpf_by_tid, duration)
+
+    if proc is not None:
+        ebpf_path = os.path.abspath(offcpu_output)
+        approx_prefix = os.environ.get("DD_PROFILING_OUTPUT_PPROF")
+        print()
+        print("pprof artifacts (open side by side in go tool pprof)")
+        print("-" * 56)
+        print(f"  eBPF (kernel-exact):  {ebpf_path}")
+        print(f"    go tool pprof -http :8081 {ebpf_path}")
+        if approx_prefix:
+            print(f"  approx (in-process):  {approx_prefix}.*  (on profiler flush)")
+            print(f"    go tool pprof -http :8080 {approx_prefix}.*")
+        else:
+            print("  approx (in-process):  not captured this run — to get its pprof, run")
+            print("    on vlad/profiling-offcpu-approximation under the profiler:")
+            print("    DD_PROFILING_ENABLED=true _DD_PROFILING_STACK_OFFCPU_TIME_ENABLED=true \\")
+            print("    DD_PROFILING_OUTPUT_PPROF=/tmp/approx ddtrace-run python3 <this script>")
     return 0
 
 
@@ -299,10 +322,15 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--compare", action="store_true", help="also run dd_offcpu and print a side-by-side table")
     ap.add_argument("--offcpu-bin", default=os.path.normpath(DEFAULT_OFFCPU_BIN), help="path to the dd_offcpu binary")
     ap.add_argument("--min-block-us", type=int, default=1000, help="dd_offcpu --min-block-us")
+    ap.add_argument(
+        "--offcpu-output",
+        default="/tmp/offcpu_ebpf.pb.gz",
+        help="path for the eBPF off-CPU pprof written by dd_offcpu (--compare only)",
+    )
     args = ap.parse_args(argv)
 
     print(f"pid={os.getpid()} duration={args.duration}s compare={args.compare}", flush=True)
-    return run(args.duration, args.compare, args.offcpu_bin, args.min_block_us)
+    return run(args.duration, args.compare, args.offcpu_bin, args.min_block_us, args.offcpu_output)
 
 
 if __name__ == "__main__":
