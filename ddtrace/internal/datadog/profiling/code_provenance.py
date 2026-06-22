@@ -78,8 +78,12 @@ class CodeProvenance:
         libraries: dict[str, Library] = {}
 
         site_packages = Path(sysconfig.get_path("purelib"))
-        # Precompute sys.path dirs once for the Bazel fallback below.
-        _sys_path_dirs = [Path(p) for p in sys.path if p]
+        # In Bazel py_binary/py_test targets, packages live in isolated
+        # per-package site-packages dirs rather than the single purelib, so
+        # we need to search sys.path. We gate this on a Bazel-specific env var
+        # to avoid affecting non-Bazel environments.
+        _in_bazel = bool(env.get("RUNFILES_DIR") or env.get("RUNFILES_MANIFEST_FILE"))
+        _sys_path_dirs = [Path(p) for p in sys.path if p] if _in_bazel else []
 
         for module, dist in module_to_distribution.items():
             name = dist.name
@@ -97,11 +101,10 @@ class CodeProvenance:
             module_path = site_packages / module
             if module.endswith(".py") or module_path.is_dir():
                 lib.paths.add(str(module_path))
-            else:
-                # Fallback for Bazel runfiles (and similar envs) where each
-                # package lives in its own isolated site-packages dir rather
-                # than the single purelib. Search sys.path for the actual
-                # location.
+            elif _in_bazel:
+                # Fallback for Bazel runfiles where each package lives in its
+                # own isolated site-packages dir rather than the single purelib.
+                # Search sys.path for the actual location.
                 for base in _sys_path_dirs:
                     candidate = base / module
                     if candidate.is_dir():
